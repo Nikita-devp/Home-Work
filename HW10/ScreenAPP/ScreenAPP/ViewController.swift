@@ -11,15 +11,17 @@ class ViewController2: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         let label = "KOFJIEF"
         let navigationController = UINavigationController(rootViewController: ViewControllerss(labels: label))
         present(navigationController, animated: true)
+        
+        view.backgroundColor = .white
     }
     
     
+    
 class ViewControllerss: UIViewController {
-        
+    
         let labels: String
         
         init(labels: String) {
