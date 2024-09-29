@@ -31,12 +31,12 @@ class GeneralViewControllers: UIViewController{
         view.backgroundColor = .white
         setupNameButton()
         setupFirstNameButton()
-        setupBirthday()
         setupAgeButton()
         setupGenderButton()
+        setupBirthday()
         
-        setupFirstNameEditButton()
         setupNameEditButoon()
+        setupFirstNameEditButton()
         setupAgeEditButton()
         setupGenderEditButton()
         setupBirthdayEditButton()
@@ -97,7 +97,7 @@ class GeneralViewControllers: UIViewController{
         view.addSubview(NameEditButton)
         NameEditButton.translatesAutoresizingMaskIntoConstraints = false
         NameEditButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15).isActive = true
-        NameEditButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: -15).isActive = true
+        NameEditButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
         NameEditButton.setImage(UIImage(systemName: "pencil"), for: .normal)
         NameEditButton.addTarget(self, action: #selector(editButtonTapped( _ :)), for: .touchUpInside)
     }
@@ -106,7 +106,7 @@ class GeneralViewControllers: UIViewController{
         view.addSubview(FirstnameEditButton)
         FirstnameEditButton.translatesAutoresizingMaskIntoConstraints = false
         FirstnameEditButton.topAnchor.constraint(equalTo: NameEditButton.bottomAnchor, constant: 15).isActive = true
-        FirstnameEditButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: -15).isActive = true
+        FirstnameEditButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
         FirstnameEditButton.setImage(UIImage(systemName: "pencil"), for: .normal)
         FirstnameEditButton.addTarget(self, action: #selector(editButtonTapped(_ :)), for: .touchUpInside)
     }
@@ -114,8 +114,8 @@ class GeneralViewControllers: UIViewController{
     func setupAgeEditButton() {
         view.addSubview(AgeEditButton)
         AgeEditButton.translatesAutoresizingMaskIntoConstraints = false
-        AgeEditButton.topAnchor.constraint(equalTo: FirstnameEditButton.bottomAnchor, constant: -15).isActive = true
-        AgeEditButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: -15).isActive = true
+        AgeEditButton.topAnchor.constraint(equalTo: FirstnameEditButton.bottomAnchor, constant: 15).isActive = true
+        AgeEditButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
         AgeEditButton.setImage(UIImage(systemName: "pencil"), for: .normal)
         AgeEditButton.addTarget(self, action: #selector(editButtonTapped(_ :)), for: .touchUpInside)
     }
@@ -124,7 +124,7 @@ class GeneralViewControllers: UIViewController{
         view.addSubview(GenderEditButton)
         GenderEditButton.translatesAutoresizingMaskIntoConstraints = false
         GenderEditButton.topAnchor.constraint(equalTo: AgeEditButton.bottomAnchor, constant: 15).isActive = true
-        GenderEditButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -15).isActive = true
+        GenderEditButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         GenderEditButton.setImage(UIImage(systemName: "pencil"), for: .normal)
         GenderEditButton.addTarget(self, action: #selector(editButtonTapped(_ :)), for: .touchUpInside)
     }
@@ -133,7 +133,7 @@ class GeneralViewControllers: UIViewController{
         view.addSubview(BirthdayEditButton)
         BirthdayEditButton.translatesAutoresizingMaskIntoConstraints = false
         BirthdayEditButton.topAnchor.constraint(equalTo: GenderEditButton.bottomAnchor, constant: 15).isActive = true
-        BirthdayEditButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: -15).isActive = true
+        BirthdayEditButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
         BirthdayEditButton.setImage(UIImage(systemName: "pencil"), for: .normal)
         BirthdayEditButton.addTarget(self, action: #selector(editButtonTapped(_ :)), for: .touchUpInside)
     }
