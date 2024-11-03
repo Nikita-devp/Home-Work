@@ -35,7 +35,7 @@ final class Cell: UICollectionViewCell {
         StackMarkAuto.addArrangedSubview(ImageMarkAuto)
         StackMarkAuto.addArrangedSubview(labelMarkAuto)
         StackMarkAuto.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([widthAnchor.constraint(equalToConstant: 150)])
+        NSLayoutConstraint.activate([widthAnchor.constraint(equalToConstant: 10)])
     }
     
     required init?(coder: NSCoder) {
