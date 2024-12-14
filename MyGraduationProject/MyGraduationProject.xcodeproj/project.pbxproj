@@ -19,6 +19,7 @@
 		397036422D0D9A2D00E68005 /* ElementService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397036412D0D9A2D00E68005 /* ElementService.swift */; };
 		397036442D0D9D0000E68005 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397036432D0D9D0000E68005 /* RegisterView.swift */; };
 		397036472D0DA2AA00E68005 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 397036462D0DA2AA00E68005 /* GoogleService-Info.plist */; };
+		397184F62D0DD13000987285 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397184F52D0DD13000987285 /* Files.swift */; };
 		39719CFF2CEFF1E100FC15B5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39719CFE2CEFF1E100FC15B5 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,7 @@
 		397036412D0D9A2D00E68005 /* ElementService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementService.swift; sourceTree = "<group>"; };
 		397036432D0D9D0000E68005 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		397036462D0DA2AA00E68005 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		397184F52D0DD13000987285 /* Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
 		39719CFE2CEFF1E100FC15B5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		39CA99CB2D00CA7E0052F884 /* MyGraduationProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyGraduationProject.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,6 +106,7 @@
 			children = (
 				397036412D0D9A2D00E68005 /* ElementService.swift */,
 				39719CFE2CEFF1E100FC15B5 /* HomeViewController.swift */,
+				397184F52D0DD13000987285 /* Files.swift */,
 			);
 			name = App;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				39719CFF2CEFF1E100FC15B5 /* HomeViewController.swift in Sources */,
+				397184F62D0DD13000987285 /* Files.swift in Sources */,
 				394BB84B2CEF77E40077CD8E /* LoginViewController.swift in Sources */,
 				397036442D0D9D0000E68005 /* RegisterView.swift in Sources */,
 				391EC9322D0B6DCE004986E1 /* RegisterViewController.swift in Sources */,

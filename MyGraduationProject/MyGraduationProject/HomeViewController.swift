@@ -35,6 +35,8 @@ class HomeViewController: UIViewController {
     let service = AuthService()
     let elementServise = ElementService()
     
+    let documents = [Document]
+    
     @MainActor
     var list: [Element] = [] {
         didSet{
@@ -212,12 +214,13 @@ class CollectionContainerViewCell: UICollectionViewCell {
 extension CollectionContainerViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InnerCollectionViewCell.id, for: indexPath) as! InnerCollectionViewCell
+        let document = documents[indexPath.row]
         return cell
     }
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return documents.count
     }
 }
 
