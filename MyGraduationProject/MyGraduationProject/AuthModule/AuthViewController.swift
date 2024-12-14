@@ -15,6 +15,7 @@ class LoginViewController: UIViewController {
     lazy var loginButton = UITextField()
     lazy var passwordButton = UITextField()
     lazy var acceptButton = UIButton()
+    lazy var registerButton = UIButton()
     lazy var image = UIImageView(image: UIImage(systemName: "pencil"))
     
     
@@ -25,11 +26,12 @@ class LoginViewController: UIViewController {
         view.addSubview(nameLabel)
         view.addSubview(image)
         view.addSubview(firstStackLoginButton)
+        view.addSubview(registerButton)
         
         
         // label
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.text = "My Document"
+        nameLabel.text = "DocBOX"
         nameLabel.font = .systemFont(ofSize: 30, weight: .medium)
         nameLabel.textColor = .black
         nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
@@ -42,6 +44,16 @@ class LoginViewController: UIViewController {
         image.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 45).isActive = true
         image.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -45).isActive = true
         
+        
+        // register
+        registerButton.setTitle("Register", for: .normal)
+        registerButton.setTitleColor(.systemBlue, for: .normal)
+        registerButton.setTitleColor(.blue, for: .highlighted)
+        registerButton.backgroundColor = .systemGray6
+        registerButton.layer.cornerRadius = 10
+        registerButton.translatesAutoresizingMaskIntoConstraints = false
+        registerButton.bottomAnchor.constraint(equalTo: firstStackLoginButton.topAnchor, constant: -10).isActive = true
+        registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         
         
         // stack button
@@ -98,12 +110,12 @@ class LoginViewController: UIViewController {
     
     
     @objc func vctoshow(){
-        
         self.navigationController?.pushViewController(HomeViewController(), animated: true)
     }
     
     func removeToViewController(){
-        
         self.navigationController?.setViewControllers([LoginViewController()], animated: true)
     }
 }
+
+

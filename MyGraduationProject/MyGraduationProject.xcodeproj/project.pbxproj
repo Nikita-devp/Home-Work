@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		391EC9302D0B6804004986E1 /* FireBaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391EC92F2D0B6804004986E1 /* FireBaseController.swift */; };
+		391EC9322D0B6DCE004986E1 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391EC9312D0B6DCE004986E1 /* RegisterViewController.swift */; };
+		391EC9362D0B767B004986E1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 391EC9352D0B767B004986E1 /* GoogleService-Info.plist */; };
 		394BB8472CEF77E40077CD8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394BB8462CEF77E40077CD8E /* AppDelegate.swift */; };
 		394BB8492CEF77E40077CD8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394BB8482CEF77E40077CD8E /* SceneDelegate.swift */; };
 		394BB84B2CEF77E40077CD8E /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394BB84A2CEF77E40077CD8E /* AuthViewController.swift */; };
@@ -17,6 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		391EC92F2D0B6804004986E1 /* FireBaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseController.swift; sourceTree = "<group>"; };
+		391EC9312D0B6DCE004986E1 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		391EC9352D0B767B004986E1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		394BB8432CEF77E40077CD8E /* MyGraduationProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyGraduationProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		394BB8462CEF77E40077CD8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		394BB8482CEF77E40077CD8E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,6 +50,8 @@
 			isa = PBXGroup;
 			children = (
 				394BB84A2CEF77E40077CD8E /* AuthViewController.swift */,
+				391EC92F2D0B6804004986E1 /* FireBaseController.swift */,
+				391EC9312D0B6DCE004986E1 /* RegisterViewController.swift */,
 			);
 			path = AuthModule;
 			sourceTree = "<group>";
@@ -71,6 +79,7 @@
 				394BB8462CEF77E40077CD8E /* AppDelegate.swift */,
 				394BB8482CEF77E40077CD8E /* SceneDelegate.swift */,
 				394BB8542CEF77E70077CD8E /* LaunchScreen.storyboard */,
+				391EC9352D0B767B004986E1 /* GoogleService-Info.plist */,
 				394BB8572CEF77E70077CD8E /* Info.plist */,
 				394BB84F2CEF77E40077CD8E /* MyGraduationProject.xcdatamodeld */,
 				394BB8522CEF77E70077CD8E /* Assets.xcassets */,
@@ -96,6 +105,8 @@
 			dependencies = (
 			);
 			name = MyGraduationProject;
+			packageProductDependencies = (
+			);
 			productName = MyGraduationProject;
 			productReference = 394BB8432CEF77E40077CD8E /* MyGraduationProject.app */;
 			productType = "com.apple.product-type.application";
@@ -124,6 +135,9 @@
 				Base,
 			);
 			mainGroup = 394BB83A2CEF77E30077CD8E;
+			packageReferences = (
+				391EC94F2D0BB12E004986E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 394BB8442CEF77E40077CD8E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -140,6 +154,7 @@
 			files = (
 				394BB8532CEF77E70077CD8E /* Assets.xcassets in Resources */,
 				394BB8562CEF77E70077CD8E /* Base in Resources */,
+				391EC9362D0B767B004986E1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +167,8 @@
 			files = (
 				39719CFF2CEFF1E100FC15B5 /* HomeViewController.swift in Sources */,
 				394BB84B2CEF77E40077CD8E /* AuthViewController.swift in Sources */,
+				391EC9322D0B6DCE004986E1 /* RegisterViewController.swift in Sources */,
+				391EC9302D0B6804004986E1 /* FireBaseController.swift in Sources */,
 				394BB8472CEF77E40077CD8E /* AppDelegate.swift in Sources */,
 				394BB8512CEF77E40077CD8E /* MyGraduationProject.xcdatamodeld in Sources */,
 				394BB8492CEF77E40077CD8E /* SceneDelegate.swift in Sources */,
@@ -300,14 +317,14 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = J68Z4V9625;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyGraduationProject/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -331,14 +348,14 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = J68Z4V9625;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyGraduationProject/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -375,6 +392,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		391EC94F2D0BB12E004986E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCVersionGroup section */
 		394BB84F2CEF77E40077CD8E /* MyGraduationProject.xcdatamodeld */ = {

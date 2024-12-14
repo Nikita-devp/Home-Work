@@ -6,9 +6,6 @@
 //
 
 import UIKit
-//import MobileCoreServices
-//import UniformTypeIdentifiers
-
 
 // MARK: HomeViewController
 
@@ -34,6 +31,7 @@ class HomeViewController: UIViewController {
         button.backgroundColor = .systemGray5
         return button}()
     
+    let vc = UIDocumentPickerViewController(documentTypes: ["doc", "pdf"], in: .import)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +49,7 @@ class HomeViewController: UIViewController {
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
         
         
-        label.text = "Мои документы"
+        label.text = "My Document"
         label.font = .boldSystemFont(ofSize: 20)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -63,7 +61,9 @@ class HomeViewController: UIViewController {
         addbutton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
         addbutton.widthAnchor.constraint(equalToConstant: 30).isActive = true
         addbutton.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        addbutton.addTarget(self, action: , for: .touchUpInside)
+        addbutton.addAction(UIAction(handler: {_ in
+            self.navigationController?.pushViewController(self.vc, animated: true)
+        }), for: .touchUpInside)
         
         
     }
@@ -76,7 +76,7 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UIDocumentPickerDelegate {
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        print("rjdunf")
+        print("yes")
     }
 }
 
@@ -229,46 +229,3 @@ extension UIViewController {
     }
 }
 
-
-// MARK: FilePickerVC
-
-
-import MobileCoreServices
-import UniformTypeIdentifiers
-import UIKit
-
-
-class FilePickerVC: UIViewController, UIDocumentPickerDelegate {
-    
-    
-    @objc func pickDocument() {
-        let button = UIButton()
-        button.setTitle("добавить", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = .red
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(importFile), for: .touchUpInside)
-        
-    }
-    
-    
-    @IBAction func importFile() {
-    
-        let pdf = UTType.types(tag: "pdf",
-              tagClass: UTTagClass.filenameExtension, conformingTo: nil)
-            let txt = UTType.types(tag: "txt",
-              tagClass: UTTagClass.filenameExtension, conformingTo: nil)
-            
-            let doxy = UIDocumentPickerViewController(
-                         forOpeningContentTypes: pdf + txt)
-
-            doxy.delegate = self
-            self.present(doxy, animated: true, completion: nil)
-    }
-    
-   func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        print("оно работает")
-    }
-    
-    
-}
