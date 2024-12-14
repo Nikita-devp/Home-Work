@@ -1,11 +1,8 @@
-//
-//  HomeViewController.swift
-//  MyGraduationProject
-//
-//  Created by Злата Лашкевич on 22.11.24.
-//
-
 import UIKit
+
+protocol HomeViewControllerDelegate {
+    func updateData()
+}
 
 // MARK: HomeViewController
 
@@ -32,6 +29,38 @@ class HomeViewController: UIViewController {
         return button}()
     
     let vc = UIDocumentPickerViewController(documentTypes: ["doc", "pdf"], in: .import)
+    
+    var user: User?
+    
+    let service = AuthService()
+    let elementServise = ElementService()
+    
+    @MainActor
+    var list: [Element] = [] {
+        didSet{
+            collectionView.reloadData()
+        }
+    }
+    
+    func loadUserData() {
+            Task {
+                let currentUser = await service.getUserData()
+                let elements = await elementService.readElements()
+                Task { @MainActor in
+                    self.user = currentUser
+                    self.list = elements
+                    if user != nil {
+                        guard let name = user?.name, let surename = user?.surename else { return }
+                        fullNamelabel.text = "User: \(name) \(surename)"
+                    }
+                }
+            }
+        }
+    
+    override func viewWillAppear(_ animated: Bool) {
+            self.loadUserData()
+        }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,6 +139,12 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         case 2: return CGSize(width: UIScreen.main.bounds.width, height: 150)
         default: return CGSize(width: 0, height: 0)
         }
+    }
+}
+
+extension HomeViewController: HomeViewControllerDelegate {
+    func updateData() {
+        
     }
 }
 
@@ -228,4 +263,3 @@ extension UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
 }
-

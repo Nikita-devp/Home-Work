@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  MyGraduationProject
-//
-//  Created by Hoishik Nikita on 21.11.24.
-//
-
 import Foundation
 import UIKit
 
@@ -23,6 +16,7 @@ enum AuthViewDelegateLoginError: Error {
         }
     }
 }
+
 enum AuthViewDelegateRegisterError: Error {
     case emptyLogin
     case emptyPassword
@@ -59,6 +53,7 @@ class LoginViewController: UIViewController {
     lazy var passwordButton = UITextField()
     lazy var acceptButton = UIButton()
     lazy var registerButton = UIButton()
+    lazy var failLabel = UILabel()
     lazy var image = UIImageView(image: UIImage(systemName: "pencil"))
     
     
@@ -70,6 +65,7 @@ class LoginViewController: UIViewController {
         view.addSubview(image)
         view.addSubview(firstStackLoginButton)
         view.addSubview(registerButton)
+        view.addSubview(failLabel)
         
         
         // label
@@ -98,6 +94,10 @@ class LoginViewController: UIViewController {
         registerButton.bottomAnchor.constraint(equalTo: firstStackLoginButton.topAnchor, constant: -10).isActive = true
         registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         
+        
+//        // failure
+//        failLabel.text = "incorrect login or password"\
+//        failLabel.
         
         // stack button
         firstStackLoginButton.backgroundColor = .systemGray6
@@ -152,14 +152,6 @@ class LoginViewController: UIViewController {
         acceptButton.leadingAnchor.constraint(equalTo: firstStackLoginButton.leadingAnchor, constant: 60).isActive = true
         acceptButton.addTarget(self, action: #selector(vctoshow), for: .touchUpInside)
 }
-    
-    lazy var erorLabel: UILabel = .init()
-    
-    init() {
-        super.init(frame: .zero)
-        print("view load")
-    }
-    
     
     @objc func vctoshow(){
         self.navigationController?.pushViewController(HomeViewController(), animated: true)

@@ -1,16 +1,9 @@
-//
-//  AuthController.swift
-//  MyGraduationProject
-//
-//  Created by Злата Лашкевич on 14.12.24.
-//
-
 import UIKit
 import FirebaseAuth
 
 class AuthViewController: UIViewController {
     
-    let authView = AuthView()
+    let authView = LoginViewController()
     
     let service = AuthService()
     

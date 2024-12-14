@@ -1,11 +1,4 @@
-//
-//  FireBaseController.swift
-//  MyGraduationProject
-//
-//  Created by Злата Лашкевич on 12.12.24.
-//
 import Foundation
-import Firebase
 import FirebaseAuth
 import FirebaseFirestore
 
@@ -17,7 +10,7 @@ enum AuthError: Error {
     case wrongLoginOrPassword
     
     var errorMessege: String {
-        return switch self {
+        return switch Оself {
         case .wrongLoginOrPassword: "failed password"
         }
     }

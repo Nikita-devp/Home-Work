@@ -1,16 +1,10 @@
-//
-//  SceneDelegate.swift
-//  MyGraduationProject
-//
-//  Created by Злата Лашкевич on 21.11.24.
-//
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    
     var window: UIWindow?
-    
-    
+    private let authService = AuthService()
+    private let elementService = ElementService()
     
     
     func scene( _ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -19,8 +13,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         window?.windowScene = scene
         window?.makeKeyAndVisible()
-        window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+        
+        if authService.isLogin() {
+                    let vc = AuthViewController()
+                    Task {
+                        let user = await authService.getUserData()
+                        let element = await elementService.readElements()
+                        Task {@MainActor in
+                            vc.user = user
+                            vc.list = element
+                        }
+                    }
+                    
+                    self.window?.rootViewController = vc
+                } else {
+                    self.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
     }
+                
+}
+//        window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+    
     
     
 
