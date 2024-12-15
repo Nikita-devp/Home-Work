@@ -40,7 +40,7 @@ protocol AuthViewDelegate: AnyObject {
 }
 
 
-class LoginViewController: UIViewController {
+ class LoginViewController: UIViewController {
     
     weak var delegate: AuthViewDelegate?
         

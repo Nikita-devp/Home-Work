@@ -40,7 +40,7 @@ extension AuthViewController: AuthViewDelegate {
 //            let userData = await service.getUserData()
             let elements = await elementServise?.readElements()
             Task { @MainActor in
-                let vc = AppViewController()
+                let vc = LoginViewController()
                 vc.user = user
                 vc.list = elements ?? []
                 vc.modalPresentationStyle = .overFullScreen

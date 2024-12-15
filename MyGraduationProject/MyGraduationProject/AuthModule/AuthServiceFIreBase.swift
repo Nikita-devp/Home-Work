@@ -10,7 +10,7 @@ enum AuthError: Error {
     case wrongLoginOrPassword
     
     var errorMessege: String {
-        return switch Оself {
+        return switch self {
         case .wrongLoginOrPassword: "failed password"
         }
     }
@@ -20,7 +20,6 @@ class AuthService: AuthProtocol {
     func createUser(email: String, password: String, user: User) async -> Result<User, AuthError> {
         do {
             _ = try await Auth.auth().createUser(withEmail: email, password: password)
-//            try await result.user.sendEmailVerification()
             let uid = Auth.auth().currentUser?.uid
             let userData: User = .init(id: uid!, name: user.name, surename: user.surename)
             try Firestore.firestore()

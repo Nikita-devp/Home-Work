@@ -1,4 +1,5 @@
 import UIKit
+import FirebaseAuth
 
 class RegisterView: UIView {
     // MARK: - Elements
@@ -25,13 +26,6 @@ class RegisterView: UIView {
     lazy var nameField: UITextField  = {
         let field = UITextField()
         field.placeholder = "Name"
-        field.keyboardType = .emailAddress
-        return field
-     }()
-    
-    lazy var surenameField: UITextField  = {
-        let field = UITextField()
-        field.placeholder = "Surname"
         field.keyboardType = .emailAddress
         return field
      }()
@@ -79,7 +73,6 @@ class RegisterView: UIView {
         fieldsStackView.addArrangedSubview(passwordField)
         fieldsStackView.addArrangedSubview(errorLabel)
         fieldsStackView.addArrangedSubview(nameField)
-        fieldsStackView.addArrangedSubview(surenameField)
         fieldsStackView.addArrangedSubview(buttons)
         
         addSubview(fieldsStackView)
@@ -95,8 +88,8 @@ class RegisterView: UIView {
     // MARK: - Actions
     
     func registerButtonDidTap() {
-        guard let name = nameField.text, let surename = surenameField.text else { return }
-        let user = User(name: name, surename: surename)
+        guard let name = nameField.text else { return }
+        let user = User(name)
         guard let result = delegate?.register(
             login: loginField.text,
             password: passwordField.text, user: user
