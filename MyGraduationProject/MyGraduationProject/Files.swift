@@ -3,20 +3,15 @@
 //  MyGraduationProject
 //
 //  Created by Злата Лашкевич on 14.12.24.
-//
+import UIKit
 
-struct Document {
-    let documentName: String
+class ImagePicker: NSObject, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
-    var title: String {
-        "Doc name \(documentName)"
-    }
-}
-
-
-extension Document {
-    static func getDocument() -> [Document] {
-        [ Document(documentName: "Documentes"),
-        Document(documentName: "wdonfwonv")]
+    var imagePickerController: UIImagePickerController?
+    
+    func showImage(in viewСontroler: UIViewController){
+        imagePickerController = UIImagePickerController()
+        imagePickerController?.delegate = self
+        viewСontroler.present(imagePickerController!, animated: true)
     }
 }

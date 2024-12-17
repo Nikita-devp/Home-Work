@@ -50,7 +50,6 @@ import UIKit
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        self.hideNavigationBar()
         view.addSubview(nameLabel)
         view.addSubview(image)
         view.addSubview(firstStackLoginButton)
