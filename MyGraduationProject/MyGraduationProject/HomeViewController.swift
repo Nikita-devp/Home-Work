@@ -13,7 +13,7 @@ class HomeViewController: UIViewController {
     lazy var label = UILabel()
     
     lazy var logOutbutton: UIButton = {
-        $0.setTitle("Exit", for: .normal)
+        $0.setTitle("LogOut", for: .normal)
         $0.setTitleColor(.systemRed, for: .normal)
         return $0
     }(UIButton(primaryAction: UIAction(handler: {[weak self] _ in
@@ -40,7 +40,7 @@ class HomeViewController: UIViewController {
         button.backgroundColor = .systemGray5
         return button}()
     
-    let vc = UIDocumentPickerViewController(documentTypes: ["doc", "pdf"], in: .import)
+    let doc = UIDocumentPickerViewController(documentTypes: ["doc", "pdf"], in: .import)
     let documents = Document.getDocument()
     
     override func viewDidLoad() {
@@ -73,12 +73,12 @@ class HomeViewController: UIViewController {
         addbutton.widthAnchor.constraint(equalToConstant: 30).isActive = true
         addbutton.heightAnchor.constraint(equalToConstant: 30).isActive = true
         addbutton.addAction(UIAction(handler: {_ in
-            self.navigationController?.pushViewController(self.vc, animated: true)
+            self.navigationController?.pushViewController(self.doc, animated: true)
         }), for: .touchUpInside)
         
         logOutbutton.translatesAutoresizingMaskIntoConstraints = false
         logOutbutton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 28).isActive = true
-        logOutbutton.trailingAnchor.constraint(equalTo: addbutton.leadingAnchor, constant: 30).isActive = true
+        logOutbutton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
         
         
     }

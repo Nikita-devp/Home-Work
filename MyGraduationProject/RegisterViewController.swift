@@ -7,7 +7,17 @@ class RegisterViewController: UIViewController {
     let service = AuthService()
     
     lazy var label = UILabel()
-    lazy var acc = UIButton()
+    lazy var acc: UIButton = {
+        $0.setTitle("Register", for: .normal)
+        $0.setTitleColor(.systemBlue, for: .normal)
+        $0.setTitleColor(.blue, for: .highlighted)
+        $0.backgroundColor = .systemGray6
+        $0.layer.cornerRadius = 10
+        return $0
+    }(UIButton(primaryAction: UIAction(handler: {[weak self] _ in
+        guard let self = self else {return}
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "routeVC"), object: nil, userInfo: ["vc": WindowCase.login])
+    })))
     lazy var stack = UIStackView()
     lazy var loginButton = UITextField()
     lazy var passwordButton = UITextField()
@@ -116,7 +126,7 @@ class RegisterViewController: UIViewController {
         
         //acc
         acc.translatesAutoresizingMaskIntoConstraints = false
-        acc.setTitle("my acc", for: .normal)
+        acc.setTitle("Login Acc", for: .normal)
         acc.setTitleColor(.green, for: .normal)
         acc.setTitleColor(.red, for: .highlighted)
         acc.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true

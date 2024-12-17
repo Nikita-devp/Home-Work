@@ -13,7 +13,19 @@ import UIKit
     lazy var loginButton = UITextField()
     lazy var passwordButton = UITextField()
     lazy var acceptButton = UIButton()
-    lazy var registerButton = UIButton()
+    lazy var registerButton: UIButton = {
+        $0.setTitle("Register", for: .normal)
+        $0.setTitleColor(.systemBlue, for: .normal)
+        $0.setTitleColor(.blue, for: .highlighted)
+        $0.backgroundColor = .systemGray6
+        $0.layer.cornerRadius = 10
+        return $0
+    }(UIButton(primaryAction: UIAction(handler: {[weak self] _ in
+        guard let self = self else {return}
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "routeVC"), object: nil, userInfo: ["vc": WindowCase.reg])
+    })))
+    
+     
     lazy var failLabel = UILabel()
     lazy var image = UIImageView(image: UIImage(systemName: "pencil"))
     
@@ -30,11 +42,9 @@ import UIKit
                  NotificationCenter.default.post(name: Notification.Name(rawValue: "routeVC"), object: nil, userInfo: ["vc": WindowCase.home])
              case .failure(let failure):
                  print(failure)
-             }
-         }
-         
-         
-     }
+       }
+    }
+}
 
     
     override func viewDidLoad() {
@@ -73,8 +83,7 @@ import UIKit
         registerButton.translatesAutoresizingMaskIntoConstraints = false
         registerButton.bottomAnchor.constraint(equalTo: firstStackLoginButton.topAnchor, constant: -10).isActive = true
         registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 120).isActive = true
-//        registerButton.
+        registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 170).isActive = true
         
         
         // stack button
@@ -138,10 +147,7 @@ import UIKit
     func removeToViewController(){
         self.navigationController?.setViewControllers([LoginViewController()], animated: true)
     }
-     
-     @objc func register(){
-         self.navigationController?.pushViewController(RegisterViewController(), animated: true)
-     }
+    
 }
 
 
