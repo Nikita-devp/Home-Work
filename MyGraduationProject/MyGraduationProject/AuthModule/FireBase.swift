@@ -5,7 +5,6 @@ import Firebase
 
 class AuthService {
     
-    
     func createNewUser(user: UserData, complition: @escaping(Result<Bool, Error>) -> Void) {
         Auth.auth().createUser(withEmail: user.email, password: user.password) { [weak self] result, err in
             guard let self = self else {return}
@@ -14,7 +13,6 @@ class AuthService {
                 complition(.failure(err!))
                 return
             }
-            
             result?.user.sendEmailVerification()
             signOut()
             complition(.success(true))
@@ -29,7 +27,6 @@ class AuthService {
                 complition(.failure(err!))
                 return
             }
-            
             guard let user = result?.user else {
                 complition(.failure(Failure.invalidUser))
                 return
@@ -39,7 +36,6 @@ class AuthService {
                 signOut()
                 return
             }
-            
             complition(.success(true))
         }
     }
@@ -58,8 +54,6 @@ class AuthService {
         }
             return false
     }
-    
-    
 }
 
 

@@ -3,27 +3,25 @@ import Firebase
 
 class RegisterViewController: UIViewController {
     
-    
     let service = AuthService()
     
     lazy var label = UILabel()
-    lazy var acc: UIButton = {
-        $0.setTitle("Register", for: .normal)
-        $0.setTitleColor(.systemBlue, for: .normal)
-        $0.setTitleColor(.blue, for: .highlighted)
-        $0.backgroundColor = .systemGray6
-        $0.layer.cornerRadius = 10
-        return $0
-    }(UIButton(primaryAction: UIAction(handler: {[weak self] _ in
-        guard let self = self else {return}
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "routeVC"), object: nil, userInfo: ["vc": WindowCase.login])
-    })))
     lazy var stack = UIStackView()
     lazy var loginButton = UITextField()
     lazy var passwordButton = UITextField()
     lazy var image = UIImageView(image: UIImage(systemName: "person.badge.plus"))
     lazy var acceptButton = UIButton()
     let vc = LoginViewController()
+    
+    
+    lazy var accLogin: UIButton = {
+        $0.backgroundColor = .systemGray6
+        $0.layer.cornerRadius = 10
+        return $0
+    }(UIButton(primaryAction: UIAction(handler: {[weak self] _ in
+        guard let self = self else {return}
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "routeVC"), object: nil, userInfo: ["vc": WindowCase.login]) })))
+
     
     lazy var accept: UIAction = UIAction { [weak self] _ in
         guard let self = self else {return}
@@ -38,20 +36,17 @@ class RegisterViewController: UIViewController {
                 NotificationCenter.default.post(name: Notification.Name(rawValue: "routeVC"), object: nil, userInfo: ["vc": WindowCase.login])
             case .failure(let failure):
                 print(failure)
-            }
-            
-        })
-        
-        
-    }
-
+        }
+    })
+}
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(stack)
         view.addSubview(image)
         view.addSubview(label)
-        view.addSubview(acc)
+        view.addSubview(accLogin)
         view.backgroundColor = .white
         
         
@@ -72,14 +67,14 @@ class RegisterViewController: UIViewController {
         image.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60).isActive = true
     
         
-        // stack
+        // stack button
         stack.backgroundColor = .systemGray6
         stack.layer.opacity = 0.9
         stack.layer.cornerRadius = 35
         stack.axis = .vertical
         stack.layoutMargins
         stack.isLayoutMarginsRelativeArrangement = true
-        stack.spacing = 10
+        stack.spacing = 15
         stack.distribution = .fillEqually
         stack.alignment = .center
         stack.addArrangedSubview(loginButton)
@@ -87,7 +82,7 @@ class RegisterViewController: UIViewController {
         stack.addArrangedSubview(acceptButton)
         
         stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 100).isActive = true
+        stack.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 125).isActive = true
         stack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         stack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         stack.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30).isActive = true
@@ -101,8 +96,7 @@ class RegisterViewController: UIViewController {
         loginButton.layer.cornerRadius = 15
         loginButton.textColor = .gray
         loginButton.topAnchor.constraint(equalTo: stack.topAnchor, constant: 15).isActive = true
-        loginButton.leadingAnchor.constraint(equalTo: stack.leadingAnchor, constant: 10).isActive = true
-        
+        loginButton.leadingAnchor.constraint(equalTo: stack.leadingAnchor, constant: 25).isActive = true
         
         passwordButton.placeholder = "Youre password"
         passwordButton.keyboardType = .default
@@ -111,8 +105,8 @@ class RegisterViewController: UIViewController {
         passwordButton.backgroundColor = .systemGray5
         passwordButton.layer.cornerRadius = 15
         passwordButton.textColor = .gray
-        passwordButton.leadingAnchor.constraint(equalTo: stack.leadingAnchor, constant: 10).isActive = true
-        
+        passwordButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 10).isActive = true
+        passwordButton.leadingAnchor.constraint(equalTo: stack.leadingAnchor, constant: 25).isActive = true
         
         acceptButton.setTitle("Go", for: .normal)
         acceptButton.setTitleColor(.white, for: .normal)
@@ -120,23 +114,19 @@ class RegisterViewController: UIViewController {
         acceptButton.backgroundColor = .systemBlue
         acceptButton.layer.cornerRadius = 15
         acceptButton.titleLabel?.textAlignment = .center
-        acceptButton.leadingAnchor.constraint(equalTo: stack.leadingAnchor, constant: 50).isActive = true
-        acceptButton.bottomAnchor.constraint(equalTo: stack.bottomAnchor, constant: 15).isActive = true
+        acceptButton.leadingAnchor.constraint(equalTo: stack.leadingAnchor, constant: 60).isActive = true
+        acceptButton.bottomAnchor.constraint(equalTo: stack.bottomAnchor, constant: -15).isActive = true
         acceptButton.addAction(accept, for: .touchUpInside)
         
-        //acc
-        acc.translatesAutoresizingMaskIntoConstraints = false
-        acc.setTitle("Login Acc", for: .normal)
-        acc.setTitleColor(.green, for: .normal)
-        acc.setTitleColor(.red, for: .highlighted)
-        acc.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
-        acc.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
-        acc.addAction(UIAction(handler: {_ in
+        // go to accLogin
+        accLogin.translatesAutoresizingMaskIntoConstraints = false
+        accLogin.setImage(UIImage(systemName: "arrowshape.left"), for: .normal)
+        accLogin.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
+        accLogin.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
+        accLogin.addAction(UIAction(handler: {_ in
             self.navigationController?.pushViewController(self.vc, animated: true)
         }), for: .touchUpInside)
-        
-        
-    }
+}
     
     @objc func goToReg(){
         self.navigationController?.pushViewController(LoginViewController(), animated: true)

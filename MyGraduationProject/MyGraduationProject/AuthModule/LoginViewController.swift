@@ -5,7 +5,6 @@ import UIKit
 
  class LoginViewController: UIViewController {
         
-  
     private let service = AuthService()
      
     lazy var nameLabel = UILabel()
@@ -13,24 +12,20 @@ import UIKit
     lazy var loginButton = UITextField()
     lazy var passwordButton = UITextField()
     lazy var acceptButton = UIButton()
+    lazy var image = UIImageView(image: UIImage(systemName: "pencil"))
+     
+     
     lazy var registerButton: UIButton = {
-        $0.setTitle("Register", for: .normal)
-        $0.setTitleColor(.systemBlue, for: .normal)
-        $0.setTitleColor(.blue, for: .highlighted)
+        $0.setImage(UIImage(systemName: "person.fill.badge.plus"), for: .normal)
         $0.backgroundColor = .systemGray6
-        $0.layer.cornerRadius = 10
+        $0.layer.cornerRadius = 5
         return $0
     }(UIButton(primaryAction: UIAction(handler: {[weak self] _ in
         guard let self = self else {return}
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "routeVC"), object: nil, userInfo: ["vc": WindowCase.reg])
-    })))
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "routeVC"), object: nil, userInfo: ["vc": WindowCase.reg]) })))
     
      
-    lazy var failLabel = UILabel()
-    lazy var image = UIImageView(image: UIImage(systemName: "pencil"))
-    
-     
-    lazy var loginAction: UIAction = UIAction {[weak self] _ in
+     lazy var loginAction: UIAction = UIAction {[weak self] _ in
          guard let self = self else {return}
          let email = loginButton.text ?? ""
          let password = passwordButton.text ?? ""
@@ -54,12 +49,11 @@ import UIKit
         view.addSubview(image)
         view.addSubview(firstStackLoginButton)
         view.addSubview(registerButton)
-        view.addSubview(failLabel)
         
         
         // label
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.text = "DocBOX"
+        nameLabel.text = "ImageBOX"
         nameLabel.font = .systemFont(ofSize: 30, weight: .medium)
         nameLabel.textColor = .black
         nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
@@ -74,15 +68,10 @@ import UIKit
         
         
         // register
-        registerButton.setTitle("Register", for: .normal)
-        registerButton.setTitleColor(.systemBlue, for: .normal)
-        registerButton.setTitleColor(.blue, for: .highlighted)
-        registerButton.backgroundColor = .systemGray6
-        registerButton.layer.cornerRadius = 10
         registerButton.translatesAutoresizingMaskIntoConstraints = false
         registerButton.bottomAnchor.constraint(equalTo: firstStackLoginButton.topAnchor, constant: -10).isActive = true
         registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 170).isActive = true
+//        registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 170).isActive = true
         
         
         // stack button

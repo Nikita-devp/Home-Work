@@ -21,8 +21,8 @@ class HomeViewController: UIViewController {
     }(UIButton(primaryAction: UIAction(handler: {[weak self] _ in
         guard let self = self else {return}
         service.signOut()
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "routeVC"), object: nil, userInfo: ["vc": WindowCase.login])
-    })))
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "routeVC"), object: nil, userInfo: ["vc": WindowCase.login]) })))
+    
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -33,6 +33,7 @@ class HomeViewController: UIViewController {
         collection.delegate = self
         return collection }()
     
+    
     private let addbutton: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 10
@@ -41,24 +42,25 @@ class HomeViewController: UIViewController {
         return button}()
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.white
         view.addSubview(addbutton)
         view.addSubview(label)
         view.addSubview(collectionView)
         view.addSubview(logOutbutton)
         view.addSubview(viewImage)
+        view.backgroundColor = .white
         setupSafeArea()
 
         
+        // colleсtion
         collectionView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 35).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
         
         
+        // label
         label.text = "My Document"
         label.font = .boldSystemFont(ofSize: 20)
         label.textColor = .black
@@ -66,6 +68,8 @@ class HomeViewController: UIViewController {
         label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5).isActive = true
         label.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
+        
+        // add image
         addbutton.translatesAutoresizingMaskIntoConstraints = false
         addbutton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 28).isActive = true
         addbutton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
@@ -74,10 +78,13 @@ class HomeViewController: UIViewController {
         addbutton.addTarget(self, action: #selector(presentImageTarget), for: .touchUpInside)
         
         
+        // but logOut
         logOutbutton.translatesAutoresizingMaskIntoConstraints = false
         logOutbutton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 28).isActive = true
         logOutbutton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
         
+        
+        // image
         viewImage.translatesAutoresizingMaskIntoConstraints = false
         viewImage.layer.cornerRadius = 40
         viewImage.topAnchor.constraint(equalTo: collectionView.topAnchor, constant: 25).isActive = true
@@ -86,12 +93,11 @@ class HomeViewController: UIViewController {
         viewImage.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor, constant: -20).isActive = true
 }
 
-    
     func setupSafeArea(){
         _ = view.safeAreaLayoutGuide
     }
     
-    
+    // imagePicker
     @objc func presentImageTarget(){
         let controller = UIImagePickerController()
                 present(controller, animated: true)
@@ -132,8 +138,8 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+
 extension HomeViewController: HomeViewControllerDelegate {
     func updateData() {
-        
     }
 }

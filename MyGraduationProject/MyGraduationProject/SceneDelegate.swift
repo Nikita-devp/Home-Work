@@ -18,7 +18,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         FirebaseApp.configure()
         
-        
         if authService.isLogin() {
             self.window?.rootViewController = windowManage(vc: .home)
         } else {
