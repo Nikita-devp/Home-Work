@@ -1,29 +1,7 @@
-//
-//  User.swift
-//  MyGraduationProject
-//
-//  Created by Злата Лашкевич on 17.12.24.
-//
+import Foundation
 
-import UIKit
-
-class User: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+struct UserData: Identifiable {
+    var id: String = UUID().uuidString
+    let email: String
+    let password: String
 }

@@ -1,40 +1,54 @@
 import UIKit
+import FirebaseCore
+
+enum WindowCase{
+    case login, reg, home
+}
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     private let authService = AuthService()
-    private let elementService = ElementService()
-    
     
     func scene( _ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        NotificationCenter.default.addObserver(self, selector: #selector(routeVc(notification: )), name: Notification.Name(rawValue: "routeVC"), object: nil)
         
         guard let scene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(windowScene: scene)
-        window?.windowScene = scene
-        window?.makeKeyAndVisible()
+        self.window = UIWindow(windowScene: scene)
+        
+        FirebaseApp.configure()
+        
         
         if authService.isLogin() {
-                    let vc = AuthViewController()
-                    Task {
-                        let user = await authService.getUserData()
-                        let element = await elementService.readElements()
-                        Task {@MainActor in
-                            vc.user = user
-                            vc.list = element
-                        }
-                    }
-                    
-                    self.window?.rootViewController = vc
-                } else {
-                    self.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+            self.window?.rootViewController = windowManage(vc: .home)
+        } else {
+            self.window?.rootViewController = windowManage(vc: .reg)
+        }
+    
+        self.window?.makeKeyAndVisible()
     }
-                
+    
+    
+    
+    private func windowManage(vc: WindowCase) -> UIViewController{
+        switch vc {
+        case .login:
+            return LoginViewController()
+        case .reg:
+            return RegisterViewController()
+        case .home:
+            return UINavigationController(rootViewController: HomeViewController())
+        }
+        
+        
+        
+    }
+    @objc func routeVc(notification: Notification){
+        guard let userInfo =  notification.userInfo, let vc = userInfo["vc"] as? WindowCase else {return}
+        self.window?.rootViewController = windowManage(vc: vc)
+    }
+    
 }
-//        window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
-    
-    
-    
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
@@ -68,5 +82,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
 
-}
+
 

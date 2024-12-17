@@ -5,25 +5,26 @@
 //  Created by Злата Лашкевич on 15.12.24.
 //
 
-import UIKit
+import Foundation
 
-class CreateTargetPresenter: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+class CreateTargetPresenter {
+    var interactor: CreateTargetInteractor?
+    weak var view: CreateTargetViewController?
+    let router: CreateTargetRouter
+    
+    
+    init(
+        router: CreateTargetRouter
+    ) {
+        self.router = router
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func createButttonDidTap(with name: String, date: Date, contact: Target.Contact?){
+        self.interactor?.createButttonDidTap(with: name, date: date, contact: contact)
     }
-    */
-
+    
+    func close() {
+        guard let view else { return }
+        self.router.dismiss(viewController: view)
+    }
 }

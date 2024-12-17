@@ -1,53 +1,69 @@
-//
-//  FireBase.swift
-//  MyGraduationProject
-//
-//  Created by Злата Лашкевич on 15.12.24.
-//
 import Foundation
-import FirebaseCore
-import FirebaseFirestore
 import FirebaseAuth
-
-struct User {
-    let name: String
-}
-
-enum AuthError: Error {
-    case wrongPassword
-}
-
-protocol AuthProtocol {
-    func auth(login: String, password: String) async -> Result<User, AuthError>
-    func logout()
-}
-
-protocol UserStorageProtocol {
-    var users: [String: String] {get}
-}
-
-class UserStorageService: UserStorageProtocol {
-    let users: [String : String] = [
-        "ijbiubjon@mail.ru" : "123123123"
-    ]
-}
+import Firebase
 
 
-class AuthServiceFirebase: AuthProtocol {
-    func auth(login: String, password: String) async -> Result<User, AuthError> {
-        do {
-            let result = try await Auth.auth().createUser(withEmail: login, password: password)
-            return .success(.init(name: result.user.uid))
-        } catch {
-            return .failure(.wrongPassword)
+class AuthService {
+    
+    
+    func createNewUser(user: UserData, complition: @escaping(Result<Bool, Error>) -> Void) {
+        Auth.auth().createUser(withEmail: user.email, password: user.password) { [weak self] result, err in
+            guard let self = self else {return}
+            guard err == nil else {
+                print(err!)
+                complition(.failure(err!))
+                return
+            }
+            
+            result?.user.sendEmailVerification()
+            signOut()
+            complition(.success(true))
         }
-        
     }
     
-    func logout() {
-        <#code#>
+    func signIn(user: UserData, complition: @escaping(Result<Bool, Error>) -> Void){
+        Auth.auth().signIn(withEmail: user.email, password: user.password) { [weak self] result, err in
+            guard let self = self else {return}
+            guard err == nil else {
+                print(err!)
+                complition(.failure(err!))
+                return
+            }
+            
+            guard let user = result?.user else {
+                complition(.failure(Failure.invalidUser))
+                return
+            }
+            if !user.isEmailVerified {
+                complition(.failure(Failure.notVerified ))
+                signOut()
+                return
+            }
+            
+            complition(.success(true))
+        }
+    }
+    
+    func signOut(){
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print(error)
+        }
+    }
+    
+    func isLogin() -> Bool{
+        if let _ = Auth.auth().currentUser {
+            return true
+        }
+            return false
     }
     
     
-    
+}
+
+
+enum Failure: Error {
+    case invalidUser
+    case notVerified
 }

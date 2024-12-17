@@ -8,7 +8,19 @@ protocol HomeViewControllerDelegate {
 
 class HomeViewController: UIViewController {
     
+    private let service = AuthService()
+    
     lazy var label = UILabel()
+    
+    lazy var logOutbutton: UIButton = {
+        $0.setTitle("Exit", for: .normal)
+        $0.setTitleColor(.systemRed, for: .normal)
+        return $0
+    }(UIButton(primaryAction: UIAction(handler: {[weak self] _ in
+        guard let self = self else {return}
+        service.signOut()
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "routeVC"), object: nil, userInfo: ["vc": WindowCase.login])
+    })))
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -29,40 +41,7 @@ class HomeViewController: UIViewController {
         return button}()
     
     let vc = UIDocumentPickerViewController(documentTypes: ["doc", "pdf"], in: .import)
-    
-    var user: User?
-    
-    let service = AuthService()
-    let elementServise = ElementService()
-    
-    let documents = [Document]
-    
-    @MainActor
-    var list: [Element] = [] {
-        didSet{
-            collectionView.reloadData()
-        }
-    }
-    
-    func loadUserData() {
-            Task {
-                let currentUser = await service.getUserData()
-                let elements = await elementService.readElements()
-                Task { @MainActor in
-                    self.user = currentUser
-                    self.list = elements
-                    if user != nil {
-                        guard let name = user?.name, let surename = user?.surename else { return }
-                        fullNamelabel.text = "User: \(name) \(surename)"
-                    }
-                }
-            }
-        }
-    
-    override func viewWillAppear(_ animated: Bool) {
-            self.loadUserData()
-        }
-    
+    let documents = Document.getDocument()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +49,7 @@ class HomeViewController: UIViewController {
         view.addSubview(addbutton)
         view.addSubview(label)
         view.addSubview(collectionView)
+        view.addSubview(logOutbutton)
         setupSafeArea()
 
         
@@ -96,11 +76,15 @@ class HomeViewController: UIViewController {
             self.navigationController?.pushViewController(self.vc, animated: true)
         }), for: .touchUpInside)
         
+        logOutbutton.translatesAutoresizingMaskIntoConstraints = false
+        logOutbutton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 28).isActive = true
+        logOutbutton.trailingAnchor.constraint(equalTo: addbutton.leadingAnchor, constant: 30).isActive = true
+        
         
     }
     
     func setupSafeArea(){
-        let safeArea = view.safeAreaLayoutGuide
+        _ = view.safeAreaLayoutGuide
     }
 }
 
@@ -122,12 +106,13 @@ extension HomeViewController: UICollectionViewDelegate {
 
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let doc = documents[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionContainerViewCell.id, for: indexPath) as! CollectionContainerViewCell
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        documents.count
     }
 }
 
@@ -158,6 +143,7 @@ class CollectionContainerViewCell: UICollectionViewCell {
     static let id = "collectionContainerView"
     lazy var saveButton = UIButton()
     lazy var trashButton = UIButton()
+    
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -214,13 +200,12 @@ class CollectionContainerViewCell: UICollectionViewCell {
 extension CollectionContainerViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InnerCollectionViewCell.id, for: indexPath) as! InnerCollectionViewCell
-        let document = documents[indexPath.row]
         return cell
     }
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return documents.count
+        1
     }
 }
 

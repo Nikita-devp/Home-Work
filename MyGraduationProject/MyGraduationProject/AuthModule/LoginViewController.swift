@@ -1,53 +1,14 @@
-import Foundation
+import FirebaseCore
+import FirebaseFirestore
+import FirebaseAuth
 import UIKit
 
-enum AuthViewDelegateLoginError: Error {
-    case emptyLogin
-    case emptyPassword
-    case emptyLoginAndPassword
-    case wrongLoginOrPassword
-    
-    var errorMessage: String {
-        return switch self {
-        case .emptyLogin: "Empty login"
-        case .emptyLoginAndPassword: "Empty login and password"
-        case .emptyPassword: "Empty password"
-        case .wrongLoginOrPassword: "Wrong login or password"
-        }
-    }
-}
-
-enum AuthViewDelegateRegisterError: Error {
-    case emptyLogin
-    case emptyPassword
-    case emptyLoginAndPassword
-    case save
-    
-    var errorMessage: String {
-        return switch self {
-        case .emptyLogin: "Empty login"
-        case .emptyLoginAndPassword: "Empty login and password"
-        case .emptyPassword: "Empty password"
-        case .save: "Something wrong with storage"
-        }
-    }
-}
-
-protocol AuthViewDelegate: AnyObject {
-    func login(login: String?, password: String?) -> Result<Void, AuthViewDelegateLoginError>
-    func register(login: String?, password: String?, user: User) -> Result<Void, AuthViewDelegateRegisterError>
-    func presentRegisterView()
-}
-
-
  class LoginViewController: UIViewController {
-    
-    weak var delegate: AuthViewDelegate?
         
-    lazy var fieldsStackView: UIStackView = .init()
-    
+  
+    private let service = AuthService()
+     
     lazy var nameLabel = UILabel()
-    lazy var imageFirstView = UIImageView()
     lazy var firstStackLoginButton = UIStackView()
     lazy var loginButton = UITextField()
     lazy var passwordButton = UITextField()
@@ -56,6 +17,25 @@ protocol AuthViewDelegate: AnyObject {
     lazy var failLabel = UILabel()
     lazy var image = UIImageView(image: UIImage(systemName: "pencil"))
     
+     
+    lazy var loginAction: UIAction = UIAction {[weak self] _ in
+         guard let self = self else {return}
+         let email = loginButton.text ?? ""
+         let password = passwordButton.text ?? ""
+         
+         let user = UserData(email: email, password: password)
+         service.signIn(user: user) { result in
+             switch result {
+             case .success(let success):
+                 NotificationCenter.default.post(name: Notification.Name(rawValue: "routeVC"), object: nil, userInfo: ["vc": WindowCase.home])
+             case .failure(let failure):
+                 print(failure)
+             }
+         }
+         
+         
+     }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,11 +73,9 @@ protocol AuthViewDelegate: AnyObject {
         registerButton.translatesAutoresizingMaskIntoConstraints = false
         registerButton.bottomAnchor.constraint(equalTo: firstStackLoginButton.topAnchor, constant: -10).isActive = true
         registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 120).isActive = true
+//        registerButton.
         
-        
-//        // failure
-//        failLabel.text = "incorrect login or password"\
-//        failLabel.
         
         // stack button
         firstStackLoginButton.backgroundColor = .systemGray6
@@ -132,7 +110,6 @@ protocol AuthViewDelegate: AnyObject {
         loginButton.leadingAnchor.constraint(equalTo: firstStackLoginButton.leadingAnchor, constant: 25).isActive = true
         
         passwordButton.placeholder = "Enter your password"
-        passwordButton.keyboardType = .default
         passwordButton.isSecureTextEntry = true
         passwordButton.textAlignment = .center
         passwordButton.keyboardType = .numberPad
@@ -150,9 +127,10 @@ protocol AuthViewDelegate: AnyObject {
         acceptButton.titleLabel?.textAlignment = .center
         acceptButton.bottomAnchor.constraint(equalTo: firstStackLoginButton.bottomAnchor, constant: -15).isActive = true
         acceptButton.leadingAnchor.constraint(equalTo: firstStackLoginButton.leadingAnchor, constant: 60).isActive = true
-        acceptButton.addTarget(self, action: #selector(vctoshow), for: .touchUpInside)
+        acceptButton.addAction(loginAction, for: .touchUpInside)
 }
-    
+   
+     
     @objc func vctoshow(){
         self.navigationController?.pushViewController(HomeViewController(), animated: true)
     }
@@ -160,6 +138,10 @@ protocol AuthViewDelegate: AnyObject {
     func removeToViewController(){
         self.navigationController?.setViewControllers([LoginViewController()], animated: true)
     }
+     
+     @objc func register(){
+         self.navigationController?.pushViewController(RegisterViewController(), animated: true)
+     }
 }
 
 

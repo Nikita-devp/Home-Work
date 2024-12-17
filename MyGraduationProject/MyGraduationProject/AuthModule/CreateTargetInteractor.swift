@@ -5,25 +5,32 @@
 //  Created by Злата Лашкевич on 15.12.24.
 //
 
-import UIKit
 
-class CreateTargetInteractor: UIViewController {
+import Foundation
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+class CreateTargetInteractor {
 
-        // Do any additional setup after loading the view.
+    weak var presenter: CreateTargetPresenter?
+    let networkClient: URLSession
+    
+    weak var createDelegate: CreateTargetViewControllerDelegate?
+    
+    init(
+        presenter: CreateTargetPresenter,
+        networkClient: URLSession
+    ) {
+        self.presenter = presenter
+        self.networkClient = networkClient
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func createButttonDidTap(with name: String, date: Date, contact: Target.Contact?) {
+        self.createDelegate?.didCreateTarget(name: name, date: date, contact: contact)
+        self.presenter?.close()
     }
-    */
-
+    
+    
+    func request() {
+    
+    }
 }
