@@ -96,6 +96,7 @@ import UIKit
         
         
         // seting button
+        /// login
         loginButton.placeholder = "Enter your login"
         loginButton.keyboardType = .default
         loginButton.textAlignment = .center
@@ -106,6 +107,7 @@ import UIKit
         loginButton.topAnchor.constraint(equalTo: firstStackLoginButton.topAnchor, constant: 15).isActive = true
         loginButton.leadingAnchor.constraint(equalTo: firstStackLoginButton.leadingAnchor, constant: 25).isActive = true
         
+        /// password
         passwordButton.placeholder = "Enter your password"
         passwordButton.isSecureTextEntry = true
         passwordButton.textAlignment = .center
@@ -116,6 +118,7 @@ import UIKit
         passwordButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 10).isActive = true
         passwordButton.leadingAnchor.constraint(equalTo: firstStackLoginButton.leadingAnchor, constant: 25).isActive = true
         
+        /// password
         acceptButton.setTitle("Sign in", for: .normal)
         acceptButton.setTitleColor(.white, for: .normal)
         acceptButton.setTitleColor(.systemGray3, for: .highlighted)
