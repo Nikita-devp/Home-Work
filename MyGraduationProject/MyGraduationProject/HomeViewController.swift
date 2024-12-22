@@ -114,7 +114,7 @@ class HomeViewController: UIViewController {
         pushImageToBase.trailingAnchor.constraint(equalTo: addbutton.leadingAnchor, constant: -5).isActive = true
         pushImageToBase.widthAnchor.constraint(equalToConstant: 30).isActive = true
         pushImageToBase.heightAnchor.constraint(equalToConstant: 30).isActive = true
-//        pushImageToBase.addTarget(self, action: #selector(), for: .touchUpInside)
+//        pushImageToBase.addTarget(self, action: uploadfile, for: .touchUpInside)
 }
     
     func uploadFile(fileUrl: URL) {
@@ -164,11 +164,17 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let selectImage = info[.originalImage] as? UIImage {
-            viewImage.image = selectImage }
-    let mediaType = info[UIImagePickerController.InfoKey.mediaType] as! CFString
+      
+      if let selectImage = info[.originalImage] as? UIImage {
+          viewImage.image = selectImage
+      }
+      let mediaType = info[UIImagePickerController.InfoKey.mediaType] as! CFString
+      
     if mediaType == kUTTypeImage {
-      let imageURL = info[UIImagePickerController.InfoKey.imageURL] as! URL
+        guard let imageURL = info[UIImagePickerController.InfoKey.imageURL] as? URL else {return}
+        
+        uploadFile(fileUrl: imageURL)
+        
     }
     picker.dismiss(animated: true, completion: nil)
     }
