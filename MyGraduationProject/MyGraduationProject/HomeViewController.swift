@@ -14,7 +14,6 @@ class HomeViewController: UIViewController {
     
     private let service = AuthService()
     private let storage = Storage.storage()
-    let imageMediaType = kUTTypeImage as String
     
     lazy var label = UILabel()
     lazy var viewImage = UIImageView()
@@ -40,6 +39,14 @@ class HomeViewController: UIViewController {
         return collection }()
     
     
+    lazy var pushImageToBase: UIButton = {
+        let button = UIButton()
+        button.layer.cornerRadius = 10
+        button.setImage(UIImage(systemName: "icloud.and.arrow.up.fill"), for: .normal)
+        button.backgroundColor = .systemGray5
+        return button }()
+    
+    
     private let addbutton: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 10
@@ -50,6 +57,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(pushImageToBase)
         view.addSubview(addbutton)
         view.addSubview(label)
         view.addSubview(collectionView)
@@ -57,6 +65,7 @@ class HomeViewController: UIViewController {
         view.addSubview(viewImage)
         view.backgroundColor = .white
         setupSafeArea()
+        
 
         
         // colleсtion
@@ -67,7 +76,7 @@ class HomeViewController: UIViewController {
         
         
         // label
-        label.text = "My Document"
+        label.text = "My Images"
         label.font = .boldSystemFont(ofSize: 20)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -97,6 +106,15 @@ class HomeViewController: UIViewController {
         viewImage.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor, constant: 20).isActive = true
         viewImage.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: -25).isActive = true
         viewImage.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor, constant: -20).isActive = true
+        
+        
+        // push to base
+        pushImageToBase.translatesAutoresizingMaskIntoConstraints = false
+        pushImageToBase.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 28).isActive = true
+        pushImageToBase.trailingAnchor.constraint(equalTo: addbutton.leadingAnchor, constant: -5).isActive = true
+        pushImageToBase.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        pushImageToBase.heightAnchor.constraint(equalToConstant: 30).isActive = true
+//        pushImageToBase.addTarget(self, action: #selector(), for: .touchUpInside)
 }
     
     func uploadFile(fileUrl: URL) {
@@ -105,18 +123,13 @@ class HomeViewController: UIViewController {
         do {
             // Create file name
             let fileExtension = fileUrl.pathExtension
-            let fileName = "demoImageFileName.\(fileExtension)"
-            let storage = Storage.storage()
-            let reference = storage.reference()
-            let pathRef = reference.child("pictures")
-            
+            let fileName = "demoImageFileName.\(fileExtension)" 
             let storageReference = Storage.storage().reference().child(fileName)
             let currentUploadTask = storageReference.putFile(from: fileUrl, metadata: metaData) { (storageMetaData, error) in
                 if let error = error {
                     print("Upload error: \(error.localizedDescription)")
                     return
                 }
-                // Show UIAlertController here
                 print("Image file: \(fileName) is uploaded! View it at Firebase console!")
                 
                 storageReference.downloadURL { (url, error) in
@@ -140,6 +153,7 @@ class HomeViewController: UIViewController {
     
     // imagePicker
     @objc func presentImageTarget(){
+        let imageMediaType = kUTTypeImage as String
         let pickerController = UIImagePickerController()
            pickerController.sourceType = .photoLibrary
            pickerController.mediaTypes = [imageMediaType]
@@ -151,14 +165,11 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectImage = info[.originalImage] as? UIImage {
-            viewImage.image = selectImage
-            self.dismiss(animated: true)
-        }
+            viewImage.image = selectImage }
     let mediaType = info[UIImagePickerController.InfoKey.mediaType] as! CFString
     if mediaType == kUTTypeImage {
       let imageURL = info[UIImagePickerController.InfoKey.imageURL] as! URL
     }
-
     picker.dismiss(animated: true, completion: nil)
     }
 }
@@ -167,7 +178,7 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
 extension HomeViewController: UICollectionViewDelegate {
     
     func numberOfSection(in collectionview: UICollectionView) -> Int {
-        return 3
+        return 1
     }
 }
 
@@ -188,20 +199,4 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 extension HomeViewController: HomeViewControllerDelegate {
     func updateData() {
     }
-}
-
-
-class BaseViewController: UIViewController {
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    let notificationName = Notification.Name(rawValue: "uploadTaskDidComplete")
-    NotificationCenter.default.addObserver(self, selector: #selector(uploadTaskDidCompleteHandler), name: notificationName, object: nil)
-  }
-
-  @objc func uploadTaskDidCompleteHandler(notification: Notification) {
-    print("uploadTaskDidCompleteHandler")
-    let storageMetaData = notification.userInfo?["storageMetaData"] as? StorageMetadata
-    let error = notification.userInfo?["error"] as? Error
-  }
 }

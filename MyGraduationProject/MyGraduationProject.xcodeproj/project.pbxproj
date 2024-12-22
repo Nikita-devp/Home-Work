@@ -25,7 +25,6 @@
 		39719CFF2CEFF1E100FC15B5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39719CFE2CEFF1E100FC15B5 /* HomeViewController.swift */; };
 		39C8DC2B2D10C2C5009DFD9B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39C8DC2A2D10C2C5009DFD9B /* GoogleService-Info.plist */; };
 		39C8DC2D2D10D5C8009DFD9B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C8DC2C2D10D5C8009DFD9B /* User.swift */; };
-		39E4DA892D129FFC00D6D423 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E4DA882D129FFC00D6D423 /* APIManager.swift */; };
 		39E4DA8B2D12A94300D6D423 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 39E4DA8A2D12A94300D6D423 /* FirebaseDatabase */; };
 		39E4DA8D2D12A94B00D6D423 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 39E4DA8C2D12A94B00D6D423 /* FirebaseStorage */; };
 /* End PBXBuildFile section */
@@ -45,7 +44,6 @@
 		39C8DC2A2D10C2C5009DFD9B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		39C8DC2C2D10D5C8009DFD9B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		39CA99CB2D00CA7E0052F884 /* MyGraduationProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyGraduationProject.entitlements; sourceTree = "<group>"; };
-		39E4DA882D129FFC00D6D423 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIManager.swift; path = ../APIManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,7 +122,6 @@
 			isa = PBXGroup;
 			children = (
 				39719CFE2CEFF1E100FC15B5 /* HomeViewController.swift */,
-				39E4DA882D129FFC00D6D423 /* APIManager.swift */,
 			);
 			name = App;
 			sourceTree = "<group>";
@@ -219,7 +216,6 @@
 				392837372D10AAF3007ED427 /* RegisterViewController.swift in Sources */,
 				394BB8472CEF77E40077CD8E /* AppDelegate.swift in Sources */,
 				39C8DC2D2D10D5C8009DFD9B /* User.swift in Sources */,
-				39E4DA892D129FFC00D6D423 /* APIManager.swift in Sources */,
 				394BB8512CEF77E40077CD8E /* MyGraduationProject.xcdatamodeld in Sources */,
 				394BB8492CEF77E40077CD8E /* SceneDelegate.swift in Sources */,
 				396770EF2D0F38CE001E5001 /* FireBase.swift in Sources */,
