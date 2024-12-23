@@ -18,7 +18,6 @@ class HomeViewController: UIViewController {
     lazy var label = UILabel()
     lazy var viewImage = UIImageView()
     
-    
     lazy var logOutbutton: UIButton = {
         $0.setTitle("LogOut", for: .normal)
         $0.setTitleColor(.systemRed, for: .normal)
@@ -39,14 +38,6 @@ class HomeViewController: UIViewController {
         return collection }()
     
     
-    lazy var pushImageToBase: UIButton = {
-        let button = UIButton()
-        button.layer.cornerRadius = 10
-        button.setImage(UIImage(systemName: "icloud.and.arrow.up.fill"), for: .normal)
-        button.backgroundColor = .systemGray5
-        return button }()
-    
-    
     private let addbutton: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 10
@@ -57,7 +48,6 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(pushImageToBase)
         view.addSubview(addbutton)
         view.addSubview(label)
         view.addSubview(collectionView)
@@ -66,7 +56,6 @@ class HomeViewController: UIViewController {
         view.backgroundColor = .white
         setupSafeArea()
         
-
         
         // colleсtion
         collectionView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 35).isActive = true
@@ -106,43 +95,39 @@ class HomeViewController: UIViewController {
         viewImage.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor, constant: 20).isActive = true
         viewImage.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: -25).isActive = true
         viewImage.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor, constant: -20).isActive = true
-        
-        
-        // push to base
-        pushImageToBase.translatesAutoresizingMaskIntoConstraints = false
-        pushImageToBase.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 28).isActive = true
-        pushImageToBase.trailingAnchor.constraint(equalTo: addbutton.leadingAnchor, constant: -5).isActive = true
-        pushImageToBase.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        pushImageToBase.heightAnchor.constraint(equalToConstant: 30).isActive = true
-//        pushImageToBase.addTarget(self, action: uploadfile, for: .touchUpInside)
 }
+
     
     func uploadFile(fileUrl: URL) {
+        
         let metaData = StorageMetadata()
         
-        do {
-            // Create file name
-            let fileExtension = fileUrl.pathExtension
-            let fileName = "demoImageFileName.\(fileExtension)" 
-            let storageReference = Storage.storage().reference().child(fileName)
-            let currentUploadTask = storageReference.putFile(from: fileUrl, metadata: metaData) { (storageMetaData, error) in
-                if let error = error {
-                    print("Upload error: \(error.localizedDescription)")
-                    return
-                }
-                print("Image file: \(fileName) is uploaded! View it at Firebase console!")
-                
-                storageReference.downloadURL { (url, error) in
-                    if let error = error  {
-                        print("Error on getting download url: \(error.localizedDescription)")
-                        return
-                    }
-                    print("Download url of \(fileName) is \(url!.absoluteString)")
-                }
+      do {
+        // Create file name
+        let fileExtension = fileUrl.pathExtension
+        let fileName = "ImageFileName.\(fileExtension)"
+
+        let storageReference = Storage.storage().reference().child(fileName)
+        let currentUploadTask = storageReference.putFile(from: fileUrl, metadata: metaData) { (storageMetaData, error) in
+          if let error = error {
+            print("Upload error: \(error.localizedDescription)")
+            return
+          }
+                                                                                    
+          // Show UIAlertController here
+          print("Image file: \(fileName) is uploaded! View it at Firebase console!")
+                                                                                    
+          storageReference.downloadURL { (url, error) in
+            if let error = error  {
+              print("Error on getting download url: \(error.localizedDescription)")
+              return
             }
-        } catch {
-            print("Error on extracting data from url: \(error.localizedDescription)")
+            print("Download url of \(fileName) is \(url!.absoluteString)")
+          }
         }
+      } catch {
+        print("Error on extracting data from url: \(error.localizedDescription)")
+      }
     }
             
     
@@ -170,8 +155,8 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
       }
       let mediaType = info[UIImagePickerController.InfoKey.mediaType] as! CFString
       
-    if mediaType == kUTTypeImage {
-        guard let imageURL = info[UIImagePickerController.InfoKey.imageURL] as? URL else {return}
+      if mediaType == kUTTypeImage {
+          guard let imageURL = info[UIImagePickerController.InfoKey.imageURL] as? URL else {return}
         
         uploadFile(fileUrl: imageURL)
         

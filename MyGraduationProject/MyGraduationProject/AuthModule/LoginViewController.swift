@@ -71,7 +71,6 @@ import UIKit
         registerButton.translatesAutoresizingMaskIntoConstraints = false
         registerButton.bottomAnchor.constraint(equalTo: firstStackLoginButton.topAnchor, constant: -10).isActive = true
         registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-//        registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 170).isActive = true
         
         
         // stack button

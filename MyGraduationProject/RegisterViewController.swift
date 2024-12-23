@@ -21,7 +21,7 @@ class RegisterViewController: UIViewController {
     }(UIButton(primaryAction: UIAction(handler: {[weak self] _ in
         guard let self = self else {return}
         NotificationCenter.default.post(name: Notification.Name(rawValue: "routeVC"), object: nil, userInfo: ["vc": WindowCase.login]) })))
-
+    
     
     lazy var accept: UIAction = UIAction { [weak self] _ in
         guard let self = self else {return}
@@ -77,6 +77,7 @@ class RegisterViewController: UIViewController {
         stack.spacing = 15
         stack.distribution = .fillEqually
         stack.alignment = .center
+        
         stack.addArrangedSubview(loginButton)
         stack.addArrangedSubview(passwordButton)
         stack.addArrangedSubview(acceptButton)
@@ -88,6 +89,7 @@ class RegisterViewController: UIViewController {
         stack.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30).isActive = true
         
         
+        /// login field
         loginButton.placeholder = "Youre login"
         loginButton.keyboardType = .default
         loginButton.textAlignment = .center
@@ -98,6 +100,8 @@ class RegisterViewController: UIViewController {
         loginButton.topAnchor.constraint(equalTo: stack.topAnchor, constant: 15).isActive = true
         loginButton.leadingAnchor.constraint(equalTo: stack.leadingAnchor, constant: 25).isActive = true
         
+        
+        /// password field
         passwordButton.placeholder = "Youre password"
         passwordButton.keyboardType = .default
         passwordButton.textAlignment = .center
@@ -108,6 +112,8 @@ class RegisterViewController: UIViewController {
         passwordButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 10).isActive = true
         passwordButton.leadingAnchor.constraint(equalTo: stack.leadingAnchor, constant: 25).isActive = true
         
+        
+        /// accept button
         acceptButton.setTitle("Go", for: .normal)
         acceptButton.setTitleColor(.white, for: .normal)
         acceptButton.setTitleColor(.systemGray3, for: .highlighted)
@@ -127,6 +133,7 @@ class RegisterViewController: UIViewController {
             self.navigationController?.pushViewController(self.vc, animated: true)
         }), for: .touchUpInside)
 }
+    
     
     @objc func goToReg(){
         self.navigationController?.pushViewController(LoginViewController(), animated: true)

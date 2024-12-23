@@ -28,7 +28,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     
-    
     private func windowManage(vc: WindowCase) -> UIViewController{
         switch vc {
         case .login:
@@ -38,15 +37,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         case .home:
             return UINavigationController(rootViewController: HomeViewController())
         }
-        
-        
-        
     }
+    
     @objc func routeVc(notification: Notification){
         guard let userInfo =  notification.userInfo, let vc = userInfo["vc"] as? WindowCase else {return}
         self.window?.rootViewController = windowManage(vc: vc)
     }
-    
 }
 
     func sceneDidDisconnect(_ scene: UIScene) {
