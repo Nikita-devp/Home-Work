@@ -35,7 +35,7 @@ class HomeViewController: UIViewController {
         collection.layer.cornerRadius = 34
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.delegate = self
-        return collection }()
+        return collection}()
     
     
     private let addbutton: UIButton = {
