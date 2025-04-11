@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		390007112D8A1624008C1AC2 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390007102D8A1624008C1AC2 /* StoreViewController.swift */; };
+		390D9A872DA6C3CB006387EB /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390D9A832DA6C3BD006387EB /* TestViewController.swift */; };
+		390D9A892DA6C746006387EB /* Pay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390D9A882DA6C746006387EB /* Pay.swift */; };
+		390D9A8B2DA738F4006387EB /* FinalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390D9A8A2DA738F3006387EB /* FinalViewController.swift */; };
 		397B2A752D89AB6E00025650 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397B2A742D89AB6E00025650 /* AppDelegate.swift */; };
 		397B2A772D89AB6E00025650 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397B2A762D89AB6E00025650 /* SceneDelegate.swift */; };
 		397B2A792D89AB6E00025650 /* GeneralClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397B2A782D89AB6E00025650 /* GeneralClass.swift */; };
@@ -18,6 +21,8 @@
 		397B2A8F2D89AB7300025650 /* MomentumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397B2A8E2D89AB7300025650 /* MomentumTests.swift */; };
 		397B2A992D89AB7300025650 /* MomentumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397B2A982D89AB7300025650 /* MomentumUITests.swift */; };
 		397B2A9B2D89AB7300025650 /* MomentumUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397B2A9A2D89AB7300025650 /* MomentumUITestsLaunchTests.swift */; };
+		39F8CEC02DA3163500CD8432 /* ShopingCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F8CEBF2DA3163500CD8432 /* ShopingCart.swift */; };
+		39F8CEC22DA32AE200CD8432 /* Production.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F8CEC12DA32AE200CD8432 /* Production.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +44,9 @@
 
 /* Begin PBXFileReference section */
 		390007102D8A1624008C1AC2 /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
+		390D9A832DA6C3BD006387EB /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		390D9A882DA6C746006387EB /* Pay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pay.swift; sourceTree = "<group>"; };
+		390D9A8A2DA738F3006387EB /* FinalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalViewController.swift; sourceTree = "<group>"; };
 		397B2A712D89AB6E00025650 /* Momentum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Momentum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		397B2A742D89AB6E00025650 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		397B2A762D89AB6E00025650 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +61,8 @@
 		397B2A942D89AB7300025650 /* MomentumUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MomentumUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		397B2A982D89AB7300025650 /* MomentumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentumUITests.swift; sourceTree = "<group>"; };
 		397B2A9A2D89AB7300025650 /* MomentumUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentumUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		39F8CEBF2DA3163500CD8432 /* ShopingCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopingCart.swift; sourceTree = "<group>"; };
+		39F8CEC12DA32AE200CD8432 /* Production.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Production.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +118,12 @@
 				397B2A802D89AB7200025650 /* Assets.xcassets */,
 				397B2A782D89AB6E00025650 /* GeneralClass.swift */,
 				390007102D8A1624008C1AC2 /* StoreViewController.swift */,
+				39F8CEBF2DA3163500CD8432 /* ShopingCart.swift */,
+				39F8CEC12DA32AE200CD8432 /* Production.swift */,
+				390D9A882DA6C746006387EB /* Pay.swift */,
+				390D9A8A2DA738F3006387EB /* FinalViewController.swift */,
 				397B2A822D89AB7200025650 /* LaunchScreen.storyboard */,
+				390D9A832DA6C3BD006387EB /* TestViewController.swift */,
 				397B2A852D89AB7200025650 /* Info.plist */,
 				397B2A7A2D89AB6E00025650 /* Main.storyboard */,
 				397B2A7D2D89AB6E00025650 /* Momentum.xcdatamodeld */,
@@ -266,8 +281,13 @@
 			files = (
 				390007112D8A1624008C1AC2 /* StoreViewController.swift in Sources */,
 				397B2A792D89AB6E00025650 /* GeneralClass.swift in Sources */,
+				390D9A872DA6C3CB006387EB /* TestViewController.swift in Sources */,
+				390D9A892DA6C746006387EB /* Pay.swift in Sources */,
 				397B2A752D89AB6E00025650 /* AppDelegate.swift in Sources */,
+				390D9A8B2DA738F4006387EB /* FinalViewController.swift in Sources */,
 				397B2A772D89AB6E00025650 /* SceneDelegate.swift in Sources */,
+				39F8CEC22DA32AE200CD8432 /* Production.swift in Sources */,
+				39F8CEC02DA3163500CD8432 /* ShopingCart.swift in Sources */,
 				397B2A7F2D89AB6E00025650 /* Momentum.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

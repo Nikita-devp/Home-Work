@@ -34,7 +34,7 @@ class GeneralClass: UIViewController {
     
     lazy var allStoreButton = UIButton()
     
-    
+    let scrollview = UIScrollView()
     let stackChapter = UIStackView()
     
     let newButton = UIButton()
@@ -43,51 +43,30 @@ class GeneralClass: UIViewController {
     let drinkButton = UIButton()
     let foodButton = UIButton()
     
+    let newField = UIView()
     
-/// ДЛЯ ДИНАМИЧЕСКОГО СКРОЛА
     
-//    private lazy var scroll: UIScrollView = {
-//       let scrollView = UIScrollView()
-//        scrollView.backgroundColor = .clear
-//        scrollView.frame = view.frame
-//        scrollView.contentSize = contentSize
-//        return scrollView
-//    }()
-//    
-//    
-//    private lazy var contentView: UIView = {
-//        let content = UIView()
-//        content.backgroundColor = .white
-//        content.frame.size = contentSize
-//        return content
-//    }()
-//    
-//    private var contentSize: CGSize {
-//        CGSize(width: stackChapter.frame.width + 10 , height: stackChapter.frame.height )
-//    }
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        navigationItem.hidesBackButton = true
         
         view.addSubview(shopingCart)
         view.addSubview(frontImage)
         view.addSubview(specialImage)
         view.addSubview(specialLabel)
         view.addSubview(searchLine)
-        view.addSubview(stackChapter)
+        view.addSubview(scrollview)
+        scrollview.addSubview(stackChapter)
         view.addSubview(allStoreButton)
-        
-//        view.addSubview(scroll)
-//        scroll.addSubview(contentView)
-//        contentView.addSubview(stackChapter)
         
         
         
         //кнопка корзины
         shopingCart.setTitle("Корзина покупок", for: .normal)
         shopingCart.backgroundColor = .brown
+        shopingCart.addTarget(self, action: #selector(goToShopingCart), for: .touchUpInside)
         
         
         shopingCart.translatesAutoresizingMaskIntoConstraints = false
@@ -147,16 +126,12 @@ class GeneralClass: UIViewController {
         stackChapter.addArrangedSubview(drinkButton)
         stackChapter.addArrangedSubview(foodButton)
         
+        
         stackChapter.axis = .horizontal
-        stackChapter.spacing = 7
+        stackChapter.spacing = 10
         stackChapter.alignment = .center
         stackChapter.distribution = .fillEqually
-        stackChapter.layer.scroll(CGPoint(x: 500.0, y: 0))
-        
-        stackChapter.translatesAutoresizingMaskIntoConstraints = false
-        stackChapter.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
-        stackChapter.topAnchor.constraint(equalTo: specialImage.bottomAnchor, constant: 20).isActive = true
-        
+
         
         newButton.setTitle("New", for: .normal)
         newButton.setTitleColor(.white, for: .normal)
@@ -188,13 +163,67 @@ class GeneralClass: UIViewController {
         foodButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         foodButton.layer.cornerRadius = 8
         
+        scrollview.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            scrollview.topAnchor.constraint(equalTo: specialImage.bottomAnchor, constant: 20),
+            scrollview.bottomAnchor.constraint(equalTo: allStoreButton.topAnchor, constant: -20),
+            scrollview.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
+//            scrollview.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+        
+        // Настраиваем stackChapter
+        stackChapter.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            stackChapter.topAnchor.constraint(equalTo: scrollview.topAnchor),
+            stackChapter.leadingAnchor.constraint(equalTo: scrollview.leadingAnchor),
+            stackChapter.trailingAnchor.constraint(equalTo: scrollview.trailingAnchor),
+            stackChapter.bottomAnchor.constraint(equalTo: scrollview.bottomAnchor),
+            stackChapter.widthAnchor.constraint(equalTo: scrollview.widthAnchor) // Ограничение ширины
+        ])
+        
+    }
+    
+    func setupUI(){
+        
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+//        let capucinoCard =
         
         
     }
-
+    
+    func createProductCard(name: String, price: String, image: UIImage?) -> UIView {
+        
+        let cardView = UIView()
+        cardView.backgroundColor = .white
+        cardView.layer.cornerRadius = 5
+        
+        let imageView = UIImageView(image: image)
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        
+        let nameLabel = UILabel()
+        nameLabel.text = name
+        nameLabel.font = UIFont.boldSystemFont(ofSize: 15)
+        
+        let priceLabel = UILabel()
+        priceLabel.text = price
+        priceLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        
+        let addButton = UIButton()
+        
+        return cardView
+    }
 
     @objc func goToStoreVC(){
         navigationController?.pushViewController(StoreViewController(), animated: true)
+    }
+    
+    @objc func goToShopingCart(){
+        navigationController?.pushViewController(ShopingCart(), animated: true)
     }
 }
 

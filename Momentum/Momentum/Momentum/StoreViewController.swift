@@ -12,6 +12,15 @@ class Product {
     }
 }
 
+class Image {
+    let image: UIImage
+    
+    init(image: UIImage) {
+        self.image = image
+    }
+}
+
+
 import UIKit
 
 class StoreViewController: UIViewController {
@@ -42,20 +51,22 @@ class StoreViewController: UIViewController {
     
     // позиции магаза
     let categories = [
-        "КофеStack": [Product(name: "Лате"), Product(name: "Раф"),],
+        
         "ЧайStack": [Product(name: "Черный"), Product(name: "Ягодный")],
         "Напитки": [Product(name: "Яблочный"), Product(name: "Персиковый")],
         "Закуски": [Product(name: "Бургер"), Product(name: "Чизбургер")]
     ]
     
-    var collectionView: UICollectionView!
+        var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.hidesBackButton = true
+        
         let layout = UICollectionViewFlowLayout()
-        layout.minimumInteritemSpacing = 30
-        layout.minimumLineSpacing = 20
+        layout.minimumInteritemSpacing = 20
+        layout.minimumLineSpacing = 30
         view.backgroundColor = .white
         navigationController?.navigationBar.isHidden = true
         
@@ -68,12 +79,23 @@ class StoreViewController: UIViewController {
         
         view.addSubview(collectionView)
         
+        
         view.addSubview(generalStack)
         view.addSubview(frontImage)
         view.addSubview(searchLine)
         view.addSubview(backButton)
         view.addSubview(cofeeStack)
+        collectionView.addSubview(cofeeLabel)
+        collectionView.addSubview(teaLabel)
+        collectionView.addSubview(drinklabel)
+        collectionView.addSubview(foodLabel)
         
+        cofeeLabel.translatesAutoresizingMaskIntoConstraints = false
+        cofeeLabel.text = "COfee"
+        
+        teaLabel.translatesAutoresizingMaskIntoConstraints = false
+        teaLabel.text = "Tea"
+        teaLabel.topAnchor.constraint(equalTo: cofeeLabel.bottomAnchor, constant: 50).isActive = true
         
         // строка поиска
         searchLine.placeholder = "Найти"
