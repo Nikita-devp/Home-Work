@@ -1,9 +1,6 @@
 //
 //  Production.swift
 //  Momentum
-//
-//  Created by Злата Лашкевич on 7.04.25.
-//
 
 import UIKit
 
@@ -40,7 +37,7 @@ class Production: UIViewController {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
         view.backgroundColor = .white
-        
+        navigationController?.navigationBar.isHidden = true
         view.addSubview(frontImage)
         view.addSubview(backButton)
         view.addSubview(topLabel)

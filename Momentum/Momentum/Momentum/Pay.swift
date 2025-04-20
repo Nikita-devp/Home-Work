@@ -1,9 +1,6 @@
 //
 //  efmeViewController.swift
 //  Momentum
-//
-//  Created by Злата Лашкевич on 9.04.25.
-//
 
 import UIKit
 
@@ -40,7 +37,7 @@ class PayViewController: UIViewController {
         
         navigationItem.hidesBackButton = true
         view.backgroundColor = .white
-        
+        navigationController?.navigationBar.isHidden = true
         view.addSubview(frontImage)
         view.addSubview(backButton)
         view.addSubview(topLabel)
@@ -121,6 +118,7 @@ class PayViewController: UIViewController {
         payStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
         
         
+        //MARK: оплата
         card.setTitle("Оплата картой онлайн", for: .normal)
         card.setTitleColor(.black, for: .normal)
         card.setTitleColor(.systemGray3, for: .highlighted)

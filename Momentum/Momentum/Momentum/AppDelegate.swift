@@ -1,9 +1,6 @@
 //
 //  AppDelegate.swift
 //  Momentum
-//
-//  Created by Злата Лашкевич on 18.03.25.
-//
 
 import UIKit
 import CoreData

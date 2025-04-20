@@ -1,9 +1,6 @@
 //
 //  FinalViewController.swift
 //  Momentum
-//
-//  Created by Злата Лашкевич on 10.04.25.
-//
 
 import UIKit
 
@@ -28,7 +25,7 @@ class FinalViewController: UIViewController {
 
         navigationItem.hidesBackButton = true
         view.backgroundColor = .white
-        
+        navigationController?.navigationBar.isHidden = true
         view.addSubview(frontImage)
         view.addSubview(backButton)
         view.addSubview(topLabel)

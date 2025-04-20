@@ -8,9 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		390007112D8A1624008C1AC2 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390007102D8A1624008C1AC2 /* StoreViewController.swift */; };
+		3904243E2DB5AB0800D9202F /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3904243D2DB5AB0800D9202F /* Cart.swift */; };
 		390D9A872DA6C3CB006387EB /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390D9A832DA6C3BD006387EB /* TestViewController.swift */; };
 		390D9A892DA6C746006387EB /* Pay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390D9A882DA6C746006387EB /* Pay.swift */; };
 		390D9A8B2DA738F4006387EB /* FinalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390D9A8A2DA738F3006387EB /* FinalViewController.swift */; };
+		392830192DAEEAC0000220F7 /* CapucinoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392830182DAEEAC0000220F7 /* CapucinoViewController.swift */; };
+		3928301C2DAF0671000220F7 /* LatteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928301B2DAF0671000220F7 /* LatteViewController.swift */; };
+		3928301E2DAF09E2000220F7 /* BlackTeaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928301D2DAF09E2000220F7 /* BlackTeaViewController.swift */; };
+		392830222DAF0A07000220F7 /* GrassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392830212DAF0A07000220F7 /* GrassViewController.swift */; };
+		392830242DAF0A51000220F7 /* OrangeJuiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392830232DAF0A51000220F7 /* OrangeJuiceViewController.swift */; };
+		392830262DAF0A63000220F7 /* AppleJuiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392830252DAF0A63000220F7 /* AppleJuiceViewController.swift */; };
+		392830282DAF0A8B000220F7 /* BurgerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392830272DAF0A8B000220F7 /* BurgerViewController.swift */; };
+		3928302A2DAF0AC0000220F7 /* SandwichViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392830292DAF0AC0000220F7 /* SandwichViewController.swift */; };
 		397B2A752D89AB6E00025650 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397B2A742D89AB6E00025650 /* AppDelegate.swift */; };
 		397B2A772D89AB6E00025650 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397B2A762D89AB6E00025650 /* SceneDelegate.swift */; };
 		397B2A792D89AB6E00025650 /* GeneralClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397B2A782D89AB6E00025650 /* GeneralClass.swift */; };
@@ -44,9 +53,18 @@
 
 /* Begin PBXFileReference section */
 		390007102D8A1624008C1AC2 /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
+		3904243D2DB5AB0800D9202F /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 		390D9A832DA6C3BD006387EB /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		390D9A882DA6C746006387EB /* Pay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pay.swift; sourceTree = "<group>"; };
 		390D9A8A2DA738F3006387EB /* FinalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalViewController.swift; sourceTree = "<group>"; };
+		392830182DAEEAC0000220F7 /* CapucinoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapucinoViewController.swift; sourceTree = "<group>"; };
+		3928301B2DAF0671000220F7 /* LatteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatteViewController.swift; sourceTree = "<group>"; };
+		3928301D2DAF09E2000220F7 /* BlackTeaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackTeaViewController.swift; sourceTree = "<group>"; };
+		392830212DAF0A07000220F7 /* GrassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrassViewController.swift; sourceTree = "<group>"; };
+		392830232DAF0A51000220F7 /* OrangeJuiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrangeJuiceViewController.swift; sourceTree = "<group>"; };
+		392830252DAF0A63000220F7 /* AppleJuiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleJuiceViewController.swift; sourceTree = "<group>"; };
+		392830272DAF0A8B000220F7 /* BurgerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BurgerViewController.swift; sourceTree = "<group>"; };
+		392830292DAF0AC0000220F7 /* SandwichViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandwichViewController.swift; sourceTree = "<group>"; };
 		397B2A712D89AB6E00025650 /* Momentum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Momentum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		397B2A742D89AB6E00025650 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		397B2A762D89AB6E00025650 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +108,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3928301A2DAEEB6C000220F7 /* ProductVC */ = {
+			isa = PBXGroup;
+			children = (
+				392830182DAEEAC0000220F7 /* CapucinoViewController.swift */,
+				3928301B2DAF0671000220F7 /* LatteViewController.swift */,
+				3928301D2DAF09E2000220F7 /* BlackTeaViewController.swift */,
+				392830212DAF0A07000220F7 /* GrassViewController.swift */,
+				392830232DAF0A51000220F7 /* OrangeJuiceViewController.swift */,
+				392830252DAF0A63000220F7 /* AppleJuiceViewController.swift */,
+				392830272DAF0A8B000220F7 /* BurgerViewController.swift */,
+				392830292DAF0AC0000220F7 /* SandwichViewController.swift */,
+			);
+			path = ProductVC;
+			sourceTree = "<group>";
+		};
 		397B2A682D89AB6E00025650 = {
 			isa = PBXGroup;
 			children = (
@@ -115,14 +148,16 @@
 			children = (
 				397B2A742D89AB6E00025650 /* AppDelegate.swift */,
 				397B2A762D89AB6E00025650 /* SceneDelegate.swift */,
-				397B2A802D89AB7200025650 /* Assets.xcassets */,
+				3904243D2DB5AB0800D9202F /* Cart.swift */,
 				397B2A782D89AB6E00025650 /* GeneralClass.swift */,
 				390007102D8A1624008C1AC2 /* StoreViewController.swift */,
 				39F8CEBF2DA3163500CD8432 /* ShopingCart.swift */,
 				39F8CEC12DA32AE200CD8432 /* Production.swift */,
 				390D9A882DA6C746006387EB /* Pay.swift */,
 				390D9A8A2DA738F3006387EB /* FinalViewController.swift */,
+				3928301A2DAEEB6C000220F7 /* ProductVC */,
 				397B2A822D89AB7200025650 /* LaunchScreen.storyboard */,
+				397B2A802D89AB7200025650 /* Assets.xcassets */,
 				390D9A832DA6C3BD006387EB /* TestViewController.swift */,
 				397B2A852D89AB7200025650 /* Info.plist */,
 				397B2A7A2D89AB6E00025650 /* Main.storyboard */,
@@ -280,14 +315,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				390007112D8A1624008C1AC2 /* StoreViewController.swift in Sources */,
+				392830222DAF0A07000220F7 /* GrassViewController.swift in Sources */,
+				3904243E2DB5AB0800D9202F /* Cart.swift in Sources */,
 				397B2A792D89AB6E00025650 /* GeneralClass.swift in Sources */,
 				390D9A872DA6C3CB006387EB /* TestViewController.swift in Sources */,
+				3928301E2DAF09E2000220F7 /* BlackTeaViewController.swift in Sources */,
+				392830242DAF0A51000220F7 /* OrangeJuiceViewController.swift in Sources */,
+				392830192DAEEAC0000220F7 /* CapucinoViewController.swift in Sources */,
 				390D9A892DA6C746006387EB /* Pay.swift in Sources */,
+				3928302A2DAF0AC0000220F7 /* SandwichViewController.swift in Sources */,
 				397B2A752D89AB6E00025650 /* AppDelegate.swift in Sources */,
 				390D9A8B2DA738F4006387EB /* FinalViewController.swift in Sources */,
+				392830282DAF0A8B000220F7 /* BurgerViewController.swift in Sources */,
 				397B2A772D89AB6E00025650 /* SceneDelegate.swift in Sources */,
 				39F8CEC22DA32AE200CD8432 /* Production.swift in Sources */,
+				3928301C2DAF0671000220F7 /* LatteViewController.swift in Sources */,
 				39F8CEC02DA3163500CD8432 /* ShopingCart.swift in Sources */,
+				392830262DAF0A63000220F7 /* AppleJuiceViewController.swift in Sources */,
 				397B2A7F2D89AB6E00025650 /* Momentum.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
