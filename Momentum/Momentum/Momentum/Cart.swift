@@ -15,7 +15,6 @@ class Cart {
     
     func addProduct(_ product: Product) {
         products.append(product)
-        print("\(product.name) добавлен в корзину")
     }
     
     func clearCart(){

@@ -6,7 +6,7 @@
 
 import UIKit
 
-class GeneralClass: UIViewController {
+class GeneralClass: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     lazy var frontImage: UIImageView = {
         let imageView = UIImageView()
@@ -48,6 +48,14 @@ class GeneralClass: UIViewController {
     
     var productsInCart: [Product] = []
     
+    var offers: [(title: String, secondary: String, price: String, image: UIImage?)] = [
+        ("Ice Latte","Новый кофе по супер низкой цене!","150₽",UIImage(named: "Latte")),
+        ("Капучино","Новый кофе по супер низкой цене!","150₽", UIImage(named: "Capucino"))
+    ]
+    var collectionView: UICollectionView!
+    var pageControll: UIPageControl!
+    var timer: Timer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -64,6 +72,10 @@ class GeneralClass: UIViewController {
         setupTea()
         setupJuice()
         setupFood()
+        
+        setupCollection()
+        setupPageControll()
+        startTimer()
         
         
         //MARK: кнопка корзины
@@ -383,6 +395,84 @@ class GeneralClass: UIViewController {
             ])
 
         return cardView
+    }
+    
+    func setupCollection(){
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 0
+        
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
+        collectionView.register(OfferCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.isPagingEnabled = true
+        
+        view.addSubview(collectionView)
+        
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.topAnchor.constraint(equalTo: specialLabel.bottomAnchor, constant: 12).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        collectionView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+    }
+    
+    func setupPageControll(){
+        
+        pageControll = UIPageControl()
+        pageControll.numberOfPages = offers.count
+        pageControll.currentPage = 0
+        
+        view.addSubview(pageControll)
+        
+        pageControll.translatesAutoresizingMaskIntoConstraints = false
+        pageControll.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 10).isActive = true
+        pageControll.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    }
+    
+    func startTimer(){
+        
+        timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(nextOffer), userInfo: nil, repeats: true)
+    }
+    
+    @objc func nextOffer(){
+        
+        let currentIndex = Int(collectionView.contentOffset.x / collectionView.frame.width)
+        let nextIndex = (currentIndex + 1) % offers.count
+        let indexPath = IndexPath(item: nextIndex, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        pageControll.currentPage = nextIndex
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return offers.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? OfferCell else {
+            return UICollectionViewCell()
+        }
+        
+        let offer = offers[indexPath.item]
+        cell.configure(with: offer.title, secondary: offer.secondary, price: offer.price, image: offer.image)
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDecelerating scrollView: UIScrollView) {
+        let currentIndex = Int(scrollView.contentOffset.x / scrollView.frame.width)
+        pageControll.currentPage = currentIndex
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return collectionView.bounds.size
+    }
+    
+    deinit {
+        timer?.invalidate()
     }
 
     @objc func goToStoreVC(){

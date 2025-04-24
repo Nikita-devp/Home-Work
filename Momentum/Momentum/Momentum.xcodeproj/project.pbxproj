@@ -30,6 +30,7 @@
 		397B2A8F2D89AB7300025650 /* MomentumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397B2A8E2D89AB7300025650 /* MomentumTests.swift */; };
 		397B2A992D89AB7300025650 /* MomentumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397B2A982D89AB7300025650 /* MomentumUITests.swift */; };
 		397B2A9B2D89AB7300025650 /* MomentumUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397B2A9A2D89AB7300025650 /* MomentumUITestsLaunchTests.swift */; };
+		39D4C47E2DBAAFD000483726 /* OfferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D4C47D2DBAAFD000483726 /* OfferCell.swift */; };
 		39F8CEC02DA3163500CD8432 /* ShopingCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F8CEBF2DA3163500CD8432 /* ShopingCart.swift */; };
 		39F8CEC22DA32AE200CD8432 /* Production.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F8CEC12DA32AE200CD8432 /* Production.swift */; };
 /* End PBXBuildFile section */
@@ -79,6 +80,7 @@
 		397B2A942D89AB7300025650 /* MomentumUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MomentumUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		397B2A982D89AB7300025650 /* MomentumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentumUITests.swift; sourceTree = "<group>"; };
 		397B2A9A2D89AB7300025650 /* MomentumUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentumUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		39D4C47D2DBAAFD000483726 /* OfferCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferCell.swift; sourceTree = "<group>"; };
 		39F8CEBF2DA3163500CD8432 /* ShopingCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopingCart.swift; sourceTree = "<group>"; };
 		39F8CEC12DA32AE200CD8432 /* Production.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Production.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,6 +148,7 @@
 		397B2A732D89AB6E00025650 /* Momentum */ = {
 			isa = PBXGroup;
 			children = (
+				39D4C47D2DBAAFD000483726 /* OfferCell.swift */,
 				397B2A742D89AB6E00025650 /* AppDelegate.swift */,
 				397B2A762D89AB6E00025650 /* SceneDelegate.swift */,
 				3904243D2DB5AB0800D9202F /* Cart.swift */,
@@ -326,6 +329,7 @@
 				3928302A2DAF0AC0000220F7 /* SandwichViewController.swift in Sources */,
 				397B2A752D89AB6E00025650 /* AppDelegate.swift in Sources */,
 				390D9A8B2DA738F4006387EB /* FinalViewController.swift in Sources */,
+				39D4C47E2DBAAFD000483726 /* OfferCell.swift in Sources */,
 				392830282DAF0A8B000220F7 /* BurgerViewController.swift in Sources */,
 				397B2A772D89AB6E00025650 /* SceneDelegate.swift in Sources */,
 				39F8CEC22DA32AE200CD8432 /* Production.swift in Sources */,
