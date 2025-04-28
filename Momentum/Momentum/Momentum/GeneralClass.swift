@@ -41,6 +41,7 @@ class GeneralClass: UIViewController, UICollectionViewDelegateFlowLayout, UIColl
     let drinkButton = UIButton()
     let foodButton = UIButton()
     
+    let newField = UIView()
     let cofeeField = UIView()
     let teaField = UIView()
     let juiceField = UIView()
@@ -49,8 +50,9 @@ class GeneralClass: UIViewController, UICollectionViewDelegateFlowLayout, UIColl
     var productsInCart: [Product] = []
     
     var offers: [(title: String, secondary: String, price: String, image: UIImage?)] = [
-        ("Ice Latte","Новый кофе по супер низкой цене!","150₽",UIImage(named: "Latte")),
-        ("Капучино","Новый кофе по супер низкой цене!","150₽", UIImage(named: "Capucino"))
+        ("Ice Latte","Новый кофе по супер низкой цене!","150₽",UIImage(named: "IceLatte")),
+        ("Пирожное","Новинка в нашем кафе!","250₽", UIImage(named: "Cake")),
+        ("Комбо","Покупай капучино, сендвич и получай выгоду до 30%","300₽", UIImage(named: "Action"))
     ]
     var collectionView: UICollectionView!
     var pageControll: UIPageControl!
@@ -68,6 +70,8 @@ class GeneralClass: UIViewController, UICollectionViewDelegateFlowLayout, UIColl
         view.addSubview(searchLine)
         view.addSubview(stackChapter)
         view.addSubview(allStoreButton)
+        
+        setupNew()
         setupCofee()
         setupTea()
         setupJuice()
@@ -153,6 +157,7 @@ class GeneralClass: UIViewController, UICollectionViewDelegateFlowLayout, UIColl
         newButton.backgroundColor = .systemBrown
         newButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         newButton.layer.cornerRadius = 8
+        newButton.addTarget(self, action: #selector(newToShow), for: .touchUpInside)
         
         coffeeButton.setTitle("Кофе", for: .normal)
         coffeeButton.setTitleColor(.gray, for: .normal)
@@ -188,6 +193,46 @@ class GeneralClass: UIViewController, UICollectionViewDelegateFlowLayout, UIColl
             stackChapter.topAnchor.constraint(equalTo: specialImage.bottomAnchor, constant: 5),
             stackChapter.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
         ])
+        
+    }
+    
+    private func setupNew(){
+        
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 15
+        stackView.alignment = .center
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        let iceLatteCard = createProductCard(name: "Ice Latte", price: "300₽", image: UIImage(named: "IceLatteinStore"))
+//        capucinoCard.addTarget(self, action: #selector(goToCapucino), for: .touchUpInside)
+        
+        let cakeCard = createProductCard(name: "Пирожное", price: "250₽", image: UIImage(named: "CakeInStore"))
+//        latteCard.addTarget(self, action: #selector(goToLatte), for: .touchUpInside)
+    
+        
+        stackView.addArrangedSubview(iceLatteCard)
+        stackView.addArrangedSubview(cakeCard)
+        
+        newField.addSubview(stackView)
+
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: newField.topAnchor),
+            stackView.bottomAnchor.constraint(equalTo: newField.bottomAnchor),
+            stackView.leadingAnchor.constraint(equalTo: newField.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: newField.trailingAnchor)
+        ])
+        
+        cakeCard.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 200).isActive = true
+        
+        view.addSubview(newField)
+        newField.isHidden = true
+        newField.translatesAutoresizingMaskIntoConstraints = false
+        newField.topAnchor.constraint(equalTo: specialImage.bottomAnchor, constant: 55).isActive = true
+        newField.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -120).isActive = true
+        newField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
+        newField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
         
     }
     
@@ -408,14 +453,15 @@ class GeneralClass: UIViewController, UICollectionViewDelegateFlowLayout, UIColl
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.isPagingEnabled = true
+        collectionView.backgroundColor = UIColor.clear
         
         view.addSubview(collectionView)
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.topAnchor.constraint(equalTo: specialLabel.bottomAnchor, constant: 12).isActive = true
+        collectionView.topAnchor.constraint(equalTo: searchLine.bottomAnchor, constant: 18).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        collectionView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        collectionView.heightAnchor.constraint(equalToConstant: 220).isActive = true
     }
     
     func setupPageControll(){
@@ -459,6 +505,9 @@ class GeneralClass: UIViewController, UICollectionViewDelegateFlowLayout, UIColl
         let offer = offers[indexPath.item]
         cell.configure(with: offer.title, secondary: offer.secondary, price: offer.price, image: offer.image)
         
+        cell.backgroundColor = UIColor.clear
+        cell.contentView.backgroundColor = UIColor.clear
+        cell.backgroundView?.backgroundColor = UIColor.clear
         return cell
     }
     
@@ -519,12 +568,19 @@ class GeneralClass: UIViewController, UICollectionViewDelegateFlowLayout, UIColl
         navigationController?.pushViewController(SandwichViewController(), animated: true)
     }
     
+    @objc func newToShow(){
+        newField.isHidden = false
+        cofeeField.isHidden = true
+        teaField.isHidden = true
+        juiceField.isHidden = true
+        foodField.isHidden = true
+    }
+    
     @objc func cofeeToShow(){
         cofeeField.isHidden = false
         teaField.isHidden = true
         juiceField.isHidden = true
         foodField.isHidden = true
-        
     }
     
     @objc func teaToShow(){
@@ -532,7 +588,6 @@ class GeneralClass: UIViewController, UICollectionViewDelegateFlowLayout, UIColl
         teaField.isHidden = false
         juiceField.isHidden = true
         foodField.isHidden = true
-        
     }
     
     @objc func juiceToShow(){
@@ -540,7 +595,6 @@ class GeneralClass: UIViewController, UICollectionViewDelegateFlowLayout, UIColl
         teaField.isHidden = true
         juiceField.isHidden = false
         foodField.isHidden = true
-        
     }
     
     @objc func foodToShow(){
@@ -548,7 +602,6 @@ class GeneralClass: UIViewController, UICollectionViewDelegateFlowLayout, UIColl
         teaField.isHidden = true
         juiceField.isHidden = true
         foodField.isHidden = false
-        
     }
     
     @objc private func addTocart(_ sender: UIButton) {
@@ -589,6 +642,14 @@ class GeneralClass: UIViewController, UICollectionViewDelegateFlowLayout, UIColl
             productName = "Сендвич"
             productPrice = "500₽"
             productImage = UIImage(named: "Sandwich")
+        case "Ice Latte".hashValue:
+            productName = "Ice Latte"
+            productPrice = "150₽"
+            productImage = UIImage(named: "IceLatee")
+        case "Пирожное".hashValue:
+            productName = "Пирожное"
+            productPrice = "250₽"
+            productImage = UIImage(named: "Cake")
             
         default:
             return

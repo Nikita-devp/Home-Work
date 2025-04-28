@@ -24,36 +24,46 @@ class OfferCell: UICollectionViewCell {
     
     private func setupView(){
         
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 25)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 30)
         titleLabel.textAlignment = .center
         titleLabel.textColor = .white
         
-        secondaryLabel.font = UIFont.systemFont(ofSize: 17)
-        secondaryLabel.textAlignment = .center
-        secondaryLabel.numberOfLines = 0
+        secondaryLabel.font = UIFont.systemFont(ofSize: 20)
+        secondaryLabel.textAlignment = .left
+        secondaryLabel.numberOfLines = 3
         secondaryLabel.textColor = .white
         
         priceLabel.font = UIFont.systemFont(ofSize: 20)
+        priceLabel.font = UIFont.boldSystemFont(ofSize: 25)
         priceLabel.textAlignment = .center
         priceLabel.textColor = .white
         
         productImage.contentMode = .scaleAspectFit
         
+        contentView.backgroundColor = .clear
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(secondaryLabel)
+        contentView.addSubview(priceLabel)
+        contentView.addSubview(productImage)
         
-        let stackview = UIStackView(arrangedSubviews: [ titleLabel, secondaryLabel, priceLabel, productImage])
-        stackview.axis = .vertical
-        stackview.spacing = 5
-        stackview.backgroundColor = .brown
-        stackview.translatesAutoresizingMaskIntoConstraints = false
-
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 70).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         
-        contentView.addSubview(stackview)
+        secondaryLabel.translatesAutoresizingMaskIntoConstraints = false
+        secondaryLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10).isActive = true
+        secondaryLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        secondaryLabel.trailingAnchor.constraint(equalTo: productImage.leadingAnchor).isActive = true
         
-        stackview.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-        stackview.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        stackview.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
-        stackview.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        priceLabel.translatesAutoresizingMaskIntoConstraints = false
+        priceLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0).isActive = true
+        priceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         
+        productImage.translatesAutoresizingMaskIntoConstraints = false
+        productImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5).isActive = true
+        productImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 35).isActive = true
+        
+        productImage.widthAnchor.constraint(equalToConstant: 150).isActive = true
     }
     
     func configure(with title: String, secondary: String, price: String, image: UIImage?){

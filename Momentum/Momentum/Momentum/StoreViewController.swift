@@ -92,6 +92,7 @@ class StoreViewController: UIViewController {
         priceCard.setImage(UIImage(systemName: "cart"), for: .normal)
         priceCard.backgroundColor = .brown
         priceCard.tintColor = .white
+        priceCard.addTarget(self, action: #selector(goToCart), for: .touchUpInside)
         
         priceCard.translatesAutoresizingMaskIntoConstraints = false
         priceCard.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: .zero).isActive = true
@@ -410,6 +411,10 @@ class StoreViewController: UIViewController {
     
     @objc func addCard(){
         print("Donavleno v card")
+    }
+    
+    @objc func goToCart(){
+        navigationController?.pushViewController(ShopingCart(), animated: true)
     }
     
 }

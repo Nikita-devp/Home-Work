@@ -53,7 +53,7 @@ class Production: UIViewController {
         backButton.addTarget(self, action: #selector(goToShopingCart), for: .touchUpInside)
         
         backButton.translatesAutoresizingMaskIntoConstraints = false
-        backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -38).isActive = true
+        backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -5).isActive = true
         backButton.trailingAnchor.constraint(equalTo: topLabel.leadingAnchor, constant: 10).isActive = true
         backButton.widthAnchor.constraint(equalToConstant: 65).isActive = true
         backButton.heightAnchor.constraint(equalToConstant: 70).isActive = true
@@ -65,7 +65,7 @@ class Production: UIViewController {
         topLabel.font = .systemFont(ofSize: 20, weight: .medium)
         
         topLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 45).isActive = true
-        topLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -15).isActive = true
+        topLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 17).isActive = true
         
         
         // MARK: Стек Для выбора доставки самовывоза
