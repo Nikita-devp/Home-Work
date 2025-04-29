@@ -9,15 +9,15 @@ class StoreViewController: UIViewController {
     let scrollView = UIScrollView()
     
     let contentView = UIView()
-
+    
     lazy var frontImage: UIImageView = {
         let imageView = UIImageView()
         imageView.frame = .init(x: 0, y: -100, width: 400, height: 160)
         imageView.backgroundColor = .systemBrown
         imageView.contentMode = .scaleAspectFit
         return imageView
-        }()
-
+    }()
+    
     lazy var backButton = UIButton()
     lazy var searchLine = UISearchBar()
     
@@ -43,9 +43,11 @@ class StoreViewController: UIViewController {
     
     lazy var foodLabel = UILabel()
     
-    lazy var priceCard = UIButton()
+    lazy var basketButton = UIButton()
     
-  
+    var productsInCart: [Product] = []
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -53,16 +55,13 @@ class StoreViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         
         view.addSubview(scrollView)
-        scrollView.addSubview(contentView)
-        view.addSubview(priceCard)
-        contentView.addSubview(frontImage)
-        contentView.addSubview(backButton)
-        contentView.addSubview(searchLine)
-        contentView.addSubview(coffeeStack)
-        contentView.addSubview(teaStack)
-        contentView.addSubview(drinkStack)
-        contentView.addSubview(foodLabel)
+        view.addSubview(basketButton)
 
+        scrollView.addSubview(contentView)
+        [frontImage, backButton, searchLine, coffeeStack, teaStack, drinkStack, foodLabel].forEach {
+            contentView.addSubview($0)
+        }
+        
         setupCofee()
         setupTea()
         setupJuice()
@@ -73,7 +72,7 @@ class StoreViewController: UIViewController {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: priceCard.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: basketButton.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
@@ -84,21 +83,22 @@ class StoreViewController: UIViewController {
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.heightAnchor.constraint(greaterThanOrEqualTo: scrollView.heightAnchor)
         ])
-                                    
+        
         
         //MARK: Кнопка в корзину
-        priceCard.setImage(UIImage(systemName: "cart"), for: .normal)
-        priceCard.backgroundColor = .brown
-        priceCard.tintColor = .white
-        priceCard.addTarget(self, action: #selector(goToCart), for: .touchUpInside)
+        basketButton.setImage(UIImage(systemName: "cart"), for: .normal)
+        basketButton.backgroundColor = .brown
+        basketButton.tintColor = .white
+        basketButton.addTarget(self, action: #selector(goToShopingCart), for: .touchUpInside)
         
-        priceCard.translatesAutoresizingMaskIntoConstraints = false
-        priceCard.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: .zero).isActive = true
-        priceCard.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        priceCard.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        priceCard.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        basketButton.translatesAutoresizingMaskIntoConstraints = false
+        basketButton.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        basketButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        basketButton.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        basketButton.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
         
         //MARK: строка поиска
@@ -110,11 +110,10 @@ class StoreViewController: UIViewController {
         
         searchLine.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-        searchLine.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 10),
-        searchLine.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 65),
-        searchLine.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -15),
-        searchLine.heightAnchor.constraint(equalToConstant: 38)
-        
+            searchLine.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 10),
+            searchLine.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 65),
+            searchLine.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -15),
+            searchLine.heightAnchor.constraint(equalToConstant: 38)
         ])
         
         
@@ -126,11 +125,11 @@ class StoreViewController: UIViewController {
         backButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-        backButton.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: -5),
-        backButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
-        backButton.trailingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: .zero),
-        backButton.widthAnchor.constraint(equalToConstant: 65),
-        backButton.heightAnchor.constraint(equalToConstant: 70)
+            backButton.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: -5),
+            backButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            backButton.trailingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: .zero),
+            backButton.widthAnchor.constraint(equalToConstant: 65),
+            backButton.heightAnchor.constraint(equalToConstant: 70)
         ])
         
         
@@ -203,7 +202,7 @@ class StoreViewController: UIViewController {
         teaGrass.setTitleColor(.systemGray, for: .normal)
         teaGrass.layer.cornerRadius = 15
         teaGrass.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5).isActive = true
-
+        
         
         //MARK: Напитки стек
         drinkStack.axis = .horizontal
@@ -235,7 +234,7 @@ class StoreViewController: UIViewController {
         drinkNoGas.setTitleColor(.systemGray, for: .normal)
         drinkNoGas.layer.cornerRadius = 15
         drinkNoGas.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5).isActive = true
-
+        
         
         //MARK: Еда лейбл
         foodLabel.text = "Фастфуд"
@@ -247,7 +246,7 @@ class StoreViewController: UIViewController {
         foodLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10).isActive = true
         
     }
-   
+    
     
     private func setupCofee(){
         
@@ -297,6 +296,7 @@ class StoreViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: teaStack.bottomAnchor, constant: 30),
+            stackView.bottomAnchor.constraint(equalTo: drinkStack.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
@@ -350,17 +350,18 @@ class StoreViewController: UIViewController {
         contentView.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-          stackView.topAnchor.constraint(equalTo: foodLabel.bottomAnchor, constant: 30),
-          stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-          stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+            stackView.topAnchor.constraint(equalTo: foodLabel.bottomAnchor, constant: 30),
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
         ])
         
         sendwichCard.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 200).isActive = true
     }
     
-    private func createProductCard(name: String, price: String, image: UIImage?) -> UIView {
+    private func createProductCard(name: String, price: String, image: UIImage?) -> UIButton {
         
-        let cardView = UIView()
+        let cardView = UIButton()
         cardView.backgroundColor = .white
         cardView.layer.cornerRadius = 5
         
@@ -381,7 +382,9 @@ class StoreViewController: UIViewController {
         addButton.setTitleColor(.black, for: .normal)
         addButton.setImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
         addButton.tintColor = UIColor.brown
-        addButton.addTarget(self, action: #selector(addCard), for: .touchUpInside)
+        addButton.addTarget(self, action: #selector(addTocart(_:)), for: .touchUpInside)
+        
+        addButton.tag = name.hashValue
         
         let cardStackView = UIStackView(arrangedSubviews: [imageView, nameLabel, priceLabel, addButton])
         cardStackView.axis = .vertical
@@ -399,8 +402,8 @@ class StoreViewController: UIViewController {
             cardStackView.topAnchor.constraint(equalTo: cardView.topAnchor),
             cardStackView.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 10),
             cardStackView.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -10),
-            cardStackView.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -10)
-            ])
+            cardStackView.bottomAnchor.constraint(equalTo: cardView.bottomAnchor)
+        ])
         
         return cardView
     }
@@ -409,14 +412,68 @@ class StoreViewController: UIViewController {
         navigationController?.pushViewController(GeneralClass(), animated: true)
     }
     
-    @objc func addCard(){
-        print("Donavleno v card")
-    }
-    
-    @objc func goToCart(){
+    @objc func goToShopingCart(){
         navigationController?.pushViewController(ShopingCart(), animated: true)
     }
     
-}
+    @objc private func addTocart(_ sender: UIButton) {
+        let productName: String
+        let productPrice: String
+        let productImage: UIImage?
+        
+        switch sender.tag {
+        case "Капучино".hashValue: // capucino
+            productName = "Капучино"
+            productPrice = "300₽"
+            productImage = UIImage(named: "Capucino")
+        case "Латте".hashValue: // latte
+            productName = "Латте"
+            productPrice = "300₽"
+            productImage = UIImage(named: "Latte")
+        case "Черный чай".hashValue: // black tea
+            productName = "Черный чай"
+            productPrice = "200₽"
+            productImage = UIImage(named: "BlackTea")
+        case "Ягодный чай".hashValue: // berry tea
+            productName = "Ягодный чай"
+            productPrice = "200₽"
+            productImage = UIImage(named: "BerryTea")
+        case "Апельсиновый сок".hashValue: // orange juice
+            productName = "Апельсиновый сок"
+            productPrice = "200₽"
+            productImage = UIImage(named: "AppleJuice")
+        case "Яблочный сок".hashValue: // apple juice
+            productName = "Яблочный сок"
+            productPrice = "200₽"
+            productImage = UIImage(named: "OrangeJuice")
+        case "Бургер".hashValue: // burger
+            productName = "Бургер"
+            productPrice = "500₽"
+            productImage = UIImage(named: "Burger")
+        case "Сендвич".hashValue: // sandwich
+            productName = "Сендвич"
+            productPrice = "500₽"
+            productImage = UIImage(named: "Sandwich")
+        case "Ice Latte".hashValue:
+            productName = "Ice Latte"
+            productPrice = "150₽"
+            productImage = UIImage(named: "IceLatee")
+        case "Пирожное".hashValue:
+            productName = "Пирожное"
+            productPrice = "250₽"
+            productImage = UIImage(named: "Cake")
+            
+        default:
+            return
+        }
+        
+        let product = Product(name: productName, price: productPrice, image: productImage)
+        Cart.shared.addProduct(product)
+        
+        print("\(product.name) добавлен в корзину")
+    }
     
+}
+
+
 

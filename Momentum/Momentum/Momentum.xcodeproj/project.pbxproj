@@ -20,6 +20,8 @@
 		392830262DAF0A63000220F7 /* AppleJuiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392830252DAF0A63000220F7 /* AppleJuiceViewController.swift */; };
 		392830282DAF0A8B000220F7 /* BurgerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392830272DAF0A8B000220F7 /* BurgerViewController.swift */; };
 		3928302A2DAF0AC0000220F7 /* SandwichViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392830292DAF0AC0000220F7 /* SandwichViewController.swift */; };
+		39295A1E2DBFC494009FB621 /* IceLatteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39295A1D2DBFC493009FB621 /* IceLatteViewController.swift */; };
+		39295A202DBFC4AD009FB621 /* CakeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39295A1F2DBFC4AD009FB621 /* CakeViewController.swift */; };
 		397B2A752D89AB6E00025650 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397B2A742D89AB6E00025650 /* AppDelegate.swift */; };
 		397B2A772D89AB6E00025650 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397B2A762D89AB6E00025650 /* SceneDelegate.swift */; };
 		397B2A792D89AB6E00025650 /* GeneralClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397B2A782D89AB6E00025650 /* GeneralClass.swift */; };
@@ -67,6 +69,8 @@
 		392830252DAF0A63000220F7 /* AppleJuiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleJuiceViewController.swift; sourceTree = "<group>"; };
 		392830272DAF0A8B000220F7 /* BurgerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BurgerViewController.swift; sourceTree = "<group>"; };
 		392830292DAF0AC0000220F7 /* SandwichViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandwichViewController.swift; sourceTree = "<group>"; };
+		39295A1D2DBFC493009FB621 /* IceLatteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IceLatteViewController.swift; sourceTree = "<group>"; };
+		39295A1F2DBFC4AD009FB621 /* CakeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CakeViewController.swift; sourceTree = "<group>"; };
 		397B2A712D89AB6E00025650 /* Momentum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Momentum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		397B2A742D89AB6E00025650 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		397B2A762D89AB6E00025650 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +119,8 @@
 		3928301A2DAEEB6C000220F7 /* ProductVC */ = {
 			isa = PBXGroup;
 			children = (
+				39295A1F2DBFC4AD009FB621 /* CakeViewController.swift */,
+				39295A1D2DBFC493009FB621 /* IceLatteViewController.swift */,
 				392830182DAEEAC0000220F7 /* CapucinoViewController.swift */,
 				3928301B2DAF0671000220F7 /* LatteViewController.swift */,
 				3928301D2DAF09E2000220F7 /* BlackTeaViewController.swift */,
@@ -322,6 +328,7 @@
 			files = (
 				390007112D8A1624008C1AC2 /* StoreViewController.swift in Sources */,
 				392830222DAF0A07000220F7 /* GrassViewController.swift in Sources */,
+				39295A202DBFC4AD009FB621 /* CakeViewController.swift in Sources */,
 				3904243E2DB5AB0800D9202F /* Cart.swift in Sources */,
 				397B2A792D89AB6E00025650 /* GeneralClass.swift in Sources */,
 				390D9A872DA6C3CB006387EB /* TestViewController.swift in Sources */,
@@ -335,6 +342,7 @@
 				390D9A8B2DA738F4006387EB /* FinalViewController.swift in Sources */,
 				39D4C47E2DBAAFD000483726 /* OfferCell.swift in Sources */,
 				392830282DAF0A8B000220F7 /* BurgerViewController.swift in Sources */,
+				39295A1E2DBFC494009FB621 /* IceLatteViewController.swift in Sources */,
 				397B2A772D89AB6E00025650 /* SceneDelegate.swift in Sources */,
 				39F8CEC22DA32AE200CD8432 /* Production.swift in Sources */,
 				3928301C2DAF0671000220F7 /* LatteViewController.swift in Sources */,
@@ -524,6 +532,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Momentum/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -551,6 +560,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Momentum/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

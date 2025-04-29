@@ -206,10 +206,10 @@ class GeneralClass: UIViewController, UICollectionViewDelegateFlowLayout, UIColl
         
         
         let iceLatteCard = createProductCard(name: "Ice Latte", price: "300₽", image: UIImage(named: "IceLatteinStore"))
-//        capucinoCard.addTarget(self, action: #selector(goToCapucino), for: .touchUpInside)
+        iceLatteCard.addTarget(self, action: #selector(goToIceLatte), for: .touchUpInside)
         
         let cakeCard = createProductCard(name: "Пирожное", price: "250₽", image: UIImage(named: "CakeInStore"))
-//        latteCard.addTarget(self, action: #selector(goToLatte), for: .touchUpInside)
+        cakeCard.addTarget(self, action: #selector(goToCake), for: .touchUpInside)
     
         
         stackView.addArrangedSubview(iceLatteCard)
@@ -479,7 +479,7 @@ class GeneralClass: UIViewController, UICollectionViewDelegateFlowLayout, UIColl
     
     func startTimer(){
         
-        timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(nextOffer), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(nextOffer), userInfo: nil, repeats: true)
     }
     
     @objc func nextOffer(){
@@ -566,6 +566,15 @@ class GeneralClass: UIViewController, UICollectionViewDelegateFlowLayout, UIColl
     
     @objc func goToSandwich(){
         navigationController?.pushViewController(SandwichViewController(), animated: true)
+    }
+    
+    @objc func goToIceLatte(){
+        navigationController?.pushViewController(IceLatteViewController(), animated: true)
+    }
+    
+    @objc func goToCake(){
+        navigationController?.pushViewController(CakeViewController(), animated: true)
+        
     }
     
     @objc func newToShow(){

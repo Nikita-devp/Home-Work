@@ -31,6 +31,8 @@ class PayViewController: UIViewController {
     let sbpQrField = UIView()
     let courierField = UIView()
     
+//    let imageCard = UIImage(named: "Card")
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -138,43 +140,65 @@ class PayViewController: UIViewController {
     // MARK: СЕТАП ДЛЯ КАРТЫ
     func cardSetup(){
         
+        let imageCard = UIImageView(image: UIImage(named: "Card"))
+        imageCard.contentMode = .scaleAspectFit
+        
         let numberCard = UITextField()
-        numberCard.backgroundColor = .systemMint
-        numberCard.borderStyle = .bezel
+        numberCard.placeholder = "XXXX-XXXX-XXXX-XXXX"
         
         let dateCard = UITextField()
-        dateCard.backgroundColor = .systemMint
-        dateCard.borderStyle = .bezel
+        dateCard.placeholder = "01"
+        
+        let dateSecondCard = UITextField()
+        dateSecondCard.placeholder = "01"
         
         let nameCard = UITextField()
-        nameCard.backgroundColor = .systemMint
-        nameCard.borderStyle = .bezel
+        nameCard.placeholder = "IVANOV IVAN"
         
         let cvv = UITextField()
-        cvv.backgroundColor = .systemMint
-        cvv.borderStyle = .bezel
+        cvv.placeholder = "123"
         
+        cardField.addSubview(imageCard)
         cardField.addSubview(numberCard)
         cardField.addSubview(dateCard)
+        cardField.addSubview(dateSecondCard)
         cardField.addSubview(nameCard)
         cardField.addSubview(cvv)
         
+        imageCard.translatesAutoresizingMaskIntoConstraints = false
+        imageCard.widthAnchor.constraint(equalToConstant: 400).isActive = true
+        
         numberCard.translatesAutoresizingMaskIntoConstraints = false
-        numberCard.topAnchor.constraint(equalTo: cardField.topAnchor, constant: 25).isActive = true
-        numberCard.leadingAnchor.constraint(equalTo: cardField.leadingAnchor, constant: 15).isActive = true
-        numberCard.trailingAnchor.constraint(equalTo: cardField.trailingAnchor, constant: -50).isActive = true
+        numberCard.topAnchor.constraint(equalTo: cardField.topAnchor, constant: 119).isActive = true
+        numberCard.leadingAnchor.constraint(equalTo: cardField.leadingAnchor, constant: 24).isActive = true
+        numberCard.trailingAnchor.constraint(equalTo: cardField.trailingAnchor, constant: -70).isActive = true
+        numberCard.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        numberCard.layer.cornerRadius = 20
         
         dateCard.translatesAutoresizingMaskIntoConstraints = false
-        dateCard.topAnchor.constraint(equalTo: numberCard.bottomAnchor, constant: 10).isActive = true
-        dateCard.leadingAnchor.constraint(equalTo: cardField.leadingAnchor, constant: 5).isActive = true
+        dateCard.topAnchor.constraint(equalTo: numberCard.bottomAnchor, constant: 34).isActive = true
+        dateCard.leadingAnchor.constraint(equalTo: cardField.leadingAnchor, constant: 25).isActive = true
+        dateCard.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        dateCard.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
+        
+        dateSecondCard.translatesAutoresizingMaskIntoConstraints = false
+        dateSecondCard.topAnchor.constraint(equalTo: numberCard.bottomAnchor, constant: 34).isActive = true
+        dateSecondCard.leadingAnchor.constraint(equalTo: dateCard.trailingAnchor, constant: 22).isActive = true
+        dateSecondCard.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        dateSecondCard.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         nameCard.translatesAutoresizingMaskIntoConstraints = false
-        nameCard.bottomAnchor.constraint(equalTo: cardField.bottomAnchor, constant: -5).isActive = true
-        nameCard.trailingAnchor.constraint(equalTo: cardField.trailingAnchor, constant: -30).isActive = true
-    
+        nameCard.topAnchor.constraint(equalTo: dateCard.bottomAnchor, constant: 40).isActive = true
+        nameCard.leadingAnchor.constraint(equalTo: cardField.leadingAnchor, constant: 23).isActive = true
+        nameCard.trailingAnchor.constraint(equalTo: cardField.trailingAnchor, constant: -70).isActive = true
+        nameCard.heightAnchor.constraint(equalToConstant: 33).isActive = true
+
         cvv.translatesAutoresizingMaskIntoConstraints = false
-        cvv.centerXAnchor.constraint(equalTo: cardField.centerXAnchor).isActive = true
-        cvv.centerYAnchor.constraint(equalTo: cardField.centerYAnchor).isActive = true
+        cvv.topAnchor.constraint(equalTo: numberCard.bottomAnchor, constant: 40).isActive = true
+        cvv.trailingAnchor.constraint(equalTo: cardField.trailingAnchor, constant: -18).isActive = true
+        cvv.widthAnchor.constraint(equalToConstant: 32).isActive = true
+        
         
         
         view.addSubview(cardField)
