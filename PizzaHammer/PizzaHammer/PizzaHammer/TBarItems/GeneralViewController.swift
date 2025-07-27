@@ -42,13 +42,10 @@ class GeneralViewController: UIViewController, UICollectionViewDelegateFlowLayou
         
         view.backgroundColor = .systemGray6
         
+        view.addSubview(contentView)
+        view.addSubview(scrollChapterVIew)
         view.addSubview(scrollView)
-        
         scrollView.addSubview(contentView)
-        [scrollChapterVIew, frontImage].forEach{
-            contentView.addSubview($0)
-        }
-        
         
         //MARK: Скролл чаптеров
         scrollChapterVIew.addSubview(contentchapterView)
@@ -65,7 +62,7 @@ class GeneralViewController: UIViewController, UICollectionViewDelegateFlowLayou
         //MARK: Скролл всего экрана
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.topAnchor.constraint(equalTo: stackChapter.bottomAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
@@ -78,8 +75,7 @@ class GeneralViewController: UIViewController, UICollectionViewDelegateFlowLayou
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            contentView.heightAnchor.constraint(greaterThanOrEqualTo: scrollView.heightAnchor)
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
         
         
@@ -175,13 +171,13 @@ class GeneralViewController: UIViewController, UICollectionViewDelegateFlowLayou
             collectionView.heightAnchor.constraint(equalToConstant: 150).isActive = true
         }
     
-    private func setupPizza(){
+    private func setupPizza() {
         
         let stackView = UIStackView()
-            stackView.axis = .vertical
-            stackView.spacing = 15
-            stackView.alignment = .center
-            stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = 15
+        stackView.alignment = .fill
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         let pizza1Card = createProductCard(name: "Ветчина и грибы", price: "от 355 р", image: UIImage(named: "pizza1"))
         let pizza2Card = createProductCard(name: "Баварские колбаски", price: "от 345 р", image: UIImage(named: "pizza1"))
@@ -190,6 +186,10 @@ class GeneralViewController: UIViewController, UICollectionViewDelegateFlowLayou
         let pizza5Card = createProductCard(name: "Четыре сыра", price: "от 355 р", image: UIImage(named: "pizza4"))
         let pizza6Card = createProductCard(name: "Четыре сыра", price: "от 355 р", image: UIImage(named: "pizza4"))
         let pizza7Card = createProductCard(name: "Четыре сыра", price: "от 355 р", image: UIImage(named: "pizza4"))
+        let pizza8Card = createProductCard(name: "Четыре сыра", price: "от 355 р", image: UIImage(named: "pizza4"))
+        let pizza9Card = createProductCard(name: "Четыре сыра", price: "от 355 р", image: UIImage(named: "pizza4"))
+        let pizza10Card = createProductCard(name: "Четыре сыра", price: "от 355 р", image: UIImage(named: "pizza4"))
+        let pizza11Card = createProductCard(name: "Четыре сыра", price: "от 355 р", image: UIImage(named: "pizza4"))
         
         stackView.addArrangedSubview(pizza1Card)
         stackView.addArrangedSubview(pizza2Card)
@@ -198,14 +198,18 @@ class GeneralViewController: UIViewController, UICollectionViewDelegateFlowLayou
         stackView.addArrangedSubview(pizza5Card)
         stackView.addArrangedSubview(pizza6Card)
         stackView.addArrangedSubview(pizza7Card)
+        stackView.addArrangedSubview(pizza8Card)
+        stackView.addArrangedSubview(pizza9Card)
+        stackView.addArrangedSubview(pizza10Card)
+        stackView.addArrangedSubview(pizza11Card)
         
-        
-        contentView.addSubview(stackView)
+        scrollView.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: frontImage.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: frontImage.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: frontImage.trailingAnchor)
+            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
     
@@ -274,44 +278,45 @@ func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection s
 
     
     private func createProductCard(name: String, price: String, image: UIImage?) -> UIButton {
-            
-            let cardView = UIButton()
-            cardView.backgroundColor = .white
-            cardView.layer.cornerRadius = 5
-            
-            let imageView = UIImageView(image: image)
-            imageView.contentMode = .scaleAspectFill
-            imageView.clipsToBounds = true
-            imageView.layer.cornerRadius = 20
-            
-            let nameLabel = UILabel()
-            nameLabel.text = name
-            nameLabel.font = UIFont.boldSystemFont(ofSize: 15)
-            
-            let priceLabel = UILabel()
-            priceLabel.text = price
-            priceLabel.font = UIFont.boldSystemFont(ofSize: 20)
-            
-            
-            let cardStackView = UIStackView(arrangedSubviews: [imageView, nameLabel, priceLabel])
-            cardStackView.axis = .horizontal
-            cardStackView.spacing = 10
-            
-            cardStackView.translatesAutoresizingMaskIntoConstraints = false
-            
-            cardView.addSubview(cardStackView)
-            
-            imageView.heightAnchor.constraint(equalToConstant: 70).isActive = true
-            
-            NSLayoutConstraint.activate([
-                cardStackView.topAnchor.constraint(equalTo: cardView.topAnchor),
-                cardStackView.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 10),
-                cardStackView.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -10),
-                cardStackView.bottomAnchor.constraint(equalTo: cardView.bottomAnchor)
-            ])
-            
-            return cardView
-        }
+        
+        let cardView = UIButton()
+        cardView.backgroundColor = .white
+        cardView.layer.cornerRadius = 5
+        
+        let imageView = UIImageView(image: image)
+        imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 20
+        
+        let nameLabel = UILabel()
+        nameLabel.text = name
+        nameLabel.font = UIFont.boldSystemFont(ofSize: 15)
+        
+        let priceLabel = UILabel()
+        priceLabel.text = price
+        priceLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        
+        
+        let cardStackView = UIStackView(arrangedSubviews: [imageView, nameLabel, priceLabel])
+        cardStackView.axis = .horizontal
+        cardStackView.spacing = 10
+        
+        cardStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        cardView.addSubview(cardStackView)
+        
+        imageView.widthAnchor.constraint(equalToConstant: 70).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        
+        NSLayoutConstraint.activate([
+            cardStackView.topAnchor.constraint(equalTo: cardView.topAnchor),
+            cardStackView.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 10),
+            cardStackView.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -10),
+            cardStackView.bottomAnchor.constraint(equalTo: cardView.bottomAnchor)
+        ])
+        
+        return cardView
+    }
 
     
 }

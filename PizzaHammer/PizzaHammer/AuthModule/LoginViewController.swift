@@ -138,6 +138,8 @@ class AuthViewController: UIViewController {
         } else {
             print("Неверно введен логин или пароль")
         }
+        
+        
     }
     
 }
